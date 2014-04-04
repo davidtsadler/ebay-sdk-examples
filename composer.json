@@ -1,0 +1,7 @@
+{
+	"require": {
+		"dts/ebay-sdk-finding": "dev-master",
+		"dts/ebay-sdk-trading": "dev-master",
+		"dts/ebay-sdk-shopping": "dev-master"
+	}
+}
