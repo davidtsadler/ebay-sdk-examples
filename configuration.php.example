@@ -15,6 +15,17 @@
  * limitations under the License.
  */
 
+/**
+ * Configuration settings used by all of the examples.
+ * 
+ * Specify your eBay application keys in the appropriate places.
+ *
+ * Be careful not to commit this file into an SCM repository.
+ * You risk exposing your eBay application keys to more people than intended.
+ *
+ * For more information about the configuration, see:
+ * http://devbay.net/sdk/guides/sample_project.html#configuration
+ */
 return array(
     'sandbox' => array(
         'devId' => 'YOUR_SANDBOX_DEVID_APPLICATION_KEY',
