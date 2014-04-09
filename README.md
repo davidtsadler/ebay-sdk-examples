@@ -47,6 +47,8 @@ There are several examples for each service that the SDK supports and they are l
 
 1. [Finding](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/finding/README.md)
 
+1. [Trading](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/README.md)
+
 ## License
 
 Copyright 2014 [David T. Sadler](http://twitter.com/davidtsadler)
