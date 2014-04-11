@@ -53,9 +53,9 @@ There are several examples for each service that the SDK supports and they are l
 
 To run an example from the command line use the `php` command followed by the name of the example file. 
 
-{% highlight bash %}
+```
 php finding/01-simple-keywords-search.php
-{% endhighlight %}
+```
 
 ## License
 
