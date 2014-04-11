@@ -35,9 +35,8 @@ $config = require __DIR__.'/../configuration.php';
  * The namespaces provided by the SDK.
  */
 use \DTS\eBaySDK\HttpClient;
-use \DTS\eBaySDK\Constants;
-use \DTS\eBaySDK\Trading\Services;
-use \DTS\eBaySDK\Trading\Types;
+use \DTS\eBaySDK\Shopping\Services;
+use \DTS\eBaySDK\Shopping\Types;
 
 /**
  * Create the service object.
@@ -45,9 +44,9 @@ use \DTS\eBaySDK\Trading\Types;
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting_started.html#service-object
  */
-$service = new Services\TradingService(new HttpClient\HttpClient(), array(
-    'apiVersion' => $config['tradingApiVersion'],
-    'siteId' => Constants\SiteIds::US
+$service = new Services\ShoppingService(new HttpClient\HttpClient(), array(
+    'apiVersion' => $config['shoppingApiVersion'],
+    'appId' => $config['production']['appId']
 ));
 
 /**
@@ -56,24 +55,15 @@ $service = new Services\TradingService(new HttpClient\HttpClient(), array(
  * For more information about creating a request object, see:
  * http://devbay.net/sdk/guides/getting_started.html#request-object
  */
-$request = new Types\GeteBayOfficialTimeRequestType();
+$request = new Types\GeteBayTimeRequestType();
 
 /**
- * An user token is required when using the Trading service. 
- *
- * For more information about getting your user tokens, see:
- * http://devbay.net/sdk/guides/application_keys.html
- */
-$request->requesterCredentials = new Types\CustomSecurityHeaderType();
-$request->requesterCredentials->eBayAuthToken = $config['production']['userToken'];
-
-/**
- * Send the request to the GeteBayOfficialTime service operation.
+ * Send the request to the GeteBayTime service operation.
  *
  * For more information about calling a service operation, see:
  * http://devbay.net/sdk/guides/getting_started.html#service-operation
  */
-$response = $service->geteBayOfficialTime($request);
+$response = $service->geteBayTime($request);
 
 /**
  * Output the result of calling the service operation.
