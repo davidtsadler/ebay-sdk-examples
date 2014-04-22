@@ -71,9 +71,11 @@ $response = $service->geteBayTime($request);
  * For more information about working with the service response object, see:
  * http://devbay.net/sdk/guides/getting_started.html#response-object
  */
-if ($response->ack === 'Failure') {
-    foreach ($response->errors as $error) {
-        printf("Error: %s\n", $error->shortMessage);
+if ($response->ack !== 'Success') {
+    if (isset($response->errors)) {
+        foreach ($response->errors as $error) {
+            printf("Error: %s\n", $error->shortMessage);
+        }
     }
 } else {
     printf("The official eBay time is: %s\n", $response->timestamp->format('H:i (\G\M\T) \o\n l jS Y'));
