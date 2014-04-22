@@ -93,8 +93,8 @@ for ($pageNum = 1; $pageNum <= 3; $pageNum++ ) {
     echo "==================\nResults for page $pageNum\n==================\n";
 
     if ($response->ack === 'Failure') {
-        foreach ($response->errors as $error) {
-            printf("Error: %s\n", $error->shortMessage);
+        foreach ($response->errorMessage->error as $error) {
+            printf("Error: %s\n", $error->message);
         }
     } else {
         foreach ($response->searchResult->item as $item) {

@@ -79,8 +79,8 @@ $response = $service->findItemsByKeywords($request);
  * http://devbay.net/sdk/guides/getting_started.html#response-object
  */
 if ($response->ack === 'Failure') {
-    foreach ($response->errors as $error) {
-        printf("Error: %s\n", $error->shortMessage);
+    foreach ($response->errorMessage->error as $error) {
+        printf("Error: %s\n", $error->message);
     }
 } else {
     foreach ($response->searchResult->item as $item) {
