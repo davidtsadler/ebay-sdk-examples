@@ -27,14 +27,13 @@ require __DIR__.'/../vendor/autoload.php';
  * to include your application keys.
  * 
  * For more information about getting your application keys, see:
- * http://devbay.net/sdk/guides/application_keys.html
+ * http://devbay.net/sdk/guides/application-keys/
  */
 $config = require __DIR__.'/../configuration.php';
 
 /**
  * The namespaces provided by the SDK.
  */
-use \DTS\eBaySDK\HttpClient;
 use \DTS\eBaySDK\Shopping\Services;
 use \DTS\eBaySDK\Shopping\Types;
 
@@ -42,9 +41,9 @@ use \DTS\eBaySDK\Shopping\Types;
  * Create the service object.
  *
  * For more information about creating a service object, see:
- * http://devbay.net/sdk/guides/getting_started.html#service-object
+ * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Services\ShoppingService(new HttpClient\HttpClient(), array(
+$service = new Services\ShoppingService(array(
     'apiVersion' => $config['shoppingApiVersion'],
     'appId' => $config['production']['appId']
 ));
@@ -53,7 +52,7 @@ $service = new Services\ShoppingService(new HttpClient\HttpClient(), array(
  * Create the request object.
  *
  * For more information about creating a request object, see:
- * http://devbay.net/sdk/guides/getting_started.html#request-object
+ * http://devbay.net/sdk/guides/getting-started/#request-object
  */
 $request = new Types\GeteBayTimeRequestType();
 
@@ -61,7 +60,7 @@ $request = new Types\GeteBayTimeRequestType();
  * Send the request to the GeteBayTime service operation.
  *
  * For more information about calling a service operation, see:
- * http://devbay.net/sdk/guides/getting_started.html#service-operation
+ * http://devbay.net/sdk/guides/getting-started/#service-operation
  */
 $response = $service->geteBayTime($request);
 
@@ -69,14 +68,14 @@ $response = $service->geteBayTime($request);
  * Output the result of calling the service operation.
  *
  * For more information about working with the service response object, see:
- * http://devbay.net/sdk/guides/getting_started.html#response-object
+ * http://devbay.net/sdk/guides/getting-started/#response-object
  */
-if ($response->ack !== 'Success') {
-    if (isset($response->errors)) {
-        foreach ($response->errors as $error) {
-            printf("Error: %s\n", $error->shortMessage);
+if ($response->Ack !== 'Success') {
+    if (isset($response->Errors)) {
+        foreach ($response->Errors as $error) {
+            printf("Error: %s\n", $error->ShortMessage);
         }
     }
 } else {
-    printf("The official eBay time is: %s\n", $response->timestamp->format('H:i (\G\M\T) \o\n l jS Y'));
+    printf("The official eBay time is: %s\n", $response->Timestamp->format('H:i (\G\M\T) \o\n l jS Y'));
 }

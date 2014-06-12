@@ -27,14 +27,13 @@ require __DIR__.'/../vendor/autoload.php';
  * to include your application keys.
  * 
  * For more information about getting your application keys, see:
- * http://devbay.net/sdk/guides/application_keys.html
+ * http://devbay.net/sdk/guides/application-keys/
  */
 $config = require __DIR__.'/../configuration.php';
 
 /**
  * The namespaces provided by the SDK.
  */
-use \DTS\eBaySDK\HttpClient;
 use \DTS\eBaySDK\Constants;
 use \DTS\eBaySDK\Finding\Services;
 use \DTS\eBaySDK\Finding\Types;
@@ -43,9 +42,9 @@ use \DTS\eBaySDK\Finding\Types;
  * Create the service object.
  *
  * For more information about creating a service object, see:
- * http://devbay.net/sdk/guides/getting_started.html#service-object
+ * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Services\FindingService(new HttpClient\HttpClient(), array(
+$service = new Services\FindingService(array(
     'appId' => $config['production']['appId'],
     'apiVersion' => $config['findingApiVersion'],
     'globalId' => Constants\GlobalIds::US
@@ -55,7 +54,7 @@ $service = new Services\FindingService(new HttpClient\HttpClient(), array(
  * Create the request object.
  *
  * For more information about creating a request object, see:
- * http://devbay.net/sdk/guides/getting_started.html#request-object
+ * http://devbay.net/sdk/guides/getting-started/#request-object
  */
 $request = new Types\FindItemsByKeywordsRequest();
 
@@ -80,7 +79,7 @@ for ($pageNum = 1; $pageNum <= 3; $pageNum++ ) {
      * Send the request to the findItemsByKeywords service operation.
      *
      * For more information about calling a service operation, see:
-     * http://devbay.net/sdk/guides/getting_started.html#service-operation
+     * http://devbay.net/sdk/guides/getting-started/#service-operation
      */
     $response = $service->findItemsByKeywords($request);
 
@@ -88,7 +87,7 @@ for ($pageNum = 1; $pageNum <= 3; $pageNum++ ) {
      * Output the result of the search.
      *
      * For more information about working with the service response object, see:
-     * http://devbay.net/sdk/guides/getting_started.html#response-object
+     * http://devbay.net/sdk/guides/getting-started/#response-object
      */
     echo "==================\nResults for page $pageNum\n==================\n";
 
