@@ -40,6 +40,6 @@ return array(
         'userToken' => 'YOUR_PRODUCTION_USER_TOKEN_APPLICATION_KEY'
     ),
     'findingApiVersion' => '1.12.0',
-    'tradingApiVersion' => '863',
-    'shoppingApiVersion' => '863'
+    'tradingApiVersion' => '871',
+    'shoppingApiVersion' => '871'
 );
