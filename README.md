@@ -37,7 +37,7 @@ All the examples load configuration settings from a `configuration.php` file loc
    cp configuration.php.example configuration.php
    ```
 
-Edit the resulting `configuration.php` file and specify your eBay application keys. Ensure that you enter values for both the sandbox and production enviroments. A guide is available to [help get your application keys](http://devbay.net/sdk/guides/application_keys.html).
+Edit the resulting `configuration.php` file and specify your eBay application keys. Ensure that you enter values for both the sandbox and production enviroments. A guide is available to [help get your application keys](http://devbay.net/sdk/guides/application-keys.html).
 
 **Be careful not to commit the `configuration.php` file into an SCM repository as you risk exposing your eBay application keys to more people than intended.**
 
