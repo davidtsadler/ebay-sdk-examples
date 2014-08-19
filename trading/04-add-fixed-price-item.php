@@ -255,7 +255,7 @@ $item->ReturnPolicy->ShippingCostPaidByOption = 'Buyer';
 $request->Item = $item;
 
 /**
- * Send the request to the AddItem service operation.
+ * Send the request to the AddFixedPriceItem service operation.
  *
  * For more information about calling a service operation, see:
  * http://devbay.net/sdk/guides/getting-started/#service-operation

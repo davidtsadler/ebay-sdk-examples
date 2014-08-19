@@ -40,3 +40,7 @@ These examples show how to use the eBay SDK for PHP with the Trading service.
    - State what the return policy is.
 
    This example does not show all the features that are available to sellers when listing. Other examples will instead focus on particular features.
+
+1. [Add An Item With Item Specifics](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/05-add-an-item-with-item-specifics.php)
+
+   Shows how to specify item specifics when adding an item.
