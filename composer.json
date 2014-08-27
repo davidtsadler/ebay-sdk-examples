@@ -1,8 +1,10 @@
 {
-	"require": {
-		"dts/ebay-sdk-finding": "~0.1",
-		"dts/ebay-sdk-trading": "~0.1",
-		"dts/ebay-sdk-shopping": "~0.1",
-		"dts/ebay-sdk-business-policies-management": "~0.1"
-	}
+    "require": {
+        "dts/ebay-sdk-finding": "~0.1",
+        "dts/ebay-sdk-trading": "~0.1",
+        "dts/ebay-sdk-shopping": "~0.1",
+        "dts/ebay-sdk-business-policies-management": "~0.1",
+        "dts/ebay-sdk-file-transfer": "~0.1",
+        "dts/ebay-sdk-bulk-data-exchange": "~0.1"
+    }
 }
