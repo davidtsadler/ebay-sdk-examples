@@ -23,9 +23,9 @@ require __DIR__.'/../vendor/autoload.php';
 /**
  * Include the configuration values.
  *
- * Ensure that you have edited the configuration.php file 
+ * Ensure that you have edited the configuration.php file
  * to include your application keys.
- * 
+ *
  * For more information about getting your application keys, see:
  * http://devbay.net/sdk/guides/application-keys/
  */
@@ -77,5 +77,5 @@ if ($response->Ack !== 'Success') {
         }
     }
 } else {
-    printf("The official eBay time is: %s\n", $response->Timestamp->format('H:i (\G\M\T) \o\n l jS Y'));
+    printf("The official eBay time is: %s\n", $response->Timestamp->format('H:i (\G\M\T) \o\n l jS F Y'));
 }
