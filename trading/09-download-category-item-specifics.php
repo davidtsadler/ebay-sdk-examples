@@ -173,7 +173,7 @@ if ($response->Ack !== 'Failure') {
                 printf("File downloaded to %s\nUnzip this file to obtain the category item specifics.\n\n", $tempFilename);
             }
         } else {
-            print('Unable to locate attachment\n');
+            print("Unable to locate attachment\n\n");
         }
     }
 }
