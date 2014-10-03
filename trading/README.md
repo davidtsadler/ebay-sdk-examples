@@ -45,11 +45,11 @@ These examples show how to use the eBay SDK for PHP with the Trading service.
 
    Shows how to specify item specifics when adding an item.
 
-1. Add an item With multiple variations **COMING SOON**
+1. [Add an item with multiple variations](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/06-add-an-item-with-multiple-variations.php)
 
    Shows how to specify multiple variations when adding an item.
 
-1. Add an item with parts compatibility **COMING SOON**
+1. [Add an item with parts compatibility](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/07-add-an-item-with-parts-compatibility.php)
 
    Shows how to specify parts compatibility when adding an item.
 
@@ -59,4 +59,4 @@ These examples show how to use the eBay SDK for PHP with the Trading service.
 
 1. [Download category item specifics](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/09-download-category-item-specifics.php)
 
-   An example that downloads all the category item specifics for a site. What is particularly interesting about this example is that it requires the use of the [ File Transfer SDK](https://github.com/davidtsadler/ebay-sdk-file-transfer).
+   An example that downloads all the category item specifics for a site. What is particularly interesting about this example is that it requires the use of the [File Transfer SDK](https://github.com/davidtsadler/ebay-sdk-file-transfer).
