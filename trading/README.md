@@ -27,7 +27,7 @@ These examples show how to use the eBay SDK for PHP with the Trading service.
 
 1. [Add fixed price item](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/04-add-fixed-price-item.php)
 
-   An example that lists an auction item to the eBay sandbox. It shows how to do the following when listing an item.
+   An example that lists a fixed price item to the eBay sandbox. It shows how to do the following when listing an item.
 
    - Specify the correct listing type.
    - Set the item price.
@@ -60,3 +60,7 @@ These examples show how to use the eBay SDK for PHP with the Trading service.
 1. [Download category item specifics](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/09-download-category-item-specifics.php)
 
    An example that downloads all the category item specifics for a site. What is particularly interesting about this example is that it requires the use of the [File Transfer SDK](https://github.com/davidtsadler/ebay-sdk-file-transfer).
+
+1. [Add fixed price item calculated shipping](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/10-add-fixed-price-item-calculated-shipping.php)
+
+   An example that lists a fixed item with calculated shipping to the eBay sandbox.
