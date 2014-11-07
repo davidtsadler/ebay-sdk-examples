@@ -64,3 +64,7 @@ These examples show how to use the eBay SDK for PHP with the Trading service.
 1. [Add fixed price item calculated shipping](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/10-add-fixed-price-item-calculated-shipping.php)
 
    An example that lists a fixed item with calculated shipping to the eBay sandbox.
+
+1. [Get my eBay selling](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/11-get-my-ebay-selling.php)
+
+   An example that shows how to use the GetMyeBaySelling operation to return a list of actively selling items.
