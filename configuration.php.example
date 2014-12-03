@@ -41,5 +41,6 @@ return array(
     ),
     'findingApiVersion' => '1.12.0',
     'tradingApiVersion' => '871',
-    'shoppingApiVersion' => '871'
+    'shoppingApiVersion' => '871',
+    'halfFindingApiVersion' => '1.2.0'
 );
