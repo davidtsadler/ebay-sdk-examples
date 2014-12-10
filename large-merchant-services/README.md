@@ -1,4 +1,4 @@
-# Large Merchange Services Examples
+# Large Merchant Services Examples
 
 These examples show how to use the eBay SDK for PHP with the Large Merchant Services.
 
