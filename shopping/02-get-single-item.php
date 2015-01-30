@@ -65,7 +65,7 @@ $request->ItemID = '111111111111';
 /**
  * Specify that additional fields need to be returned in the response.
  */
-$request->IncludeSelector = 'ItemSpecifics,Variations,Compatibility';
+$request->IncludeSelector = 'ItemSpecifics,Variations,Compatibility,Details';
 
 /**
  * Send the request to the GetSingleItem service operation.
@@ -96,6 +96,11 @@ if ($response->Ack !== 'Failure') {
 
     print("$item->Title\n");
 
+    printf("Quantity sold %s, quantiy available %s\n",
+        $item->QuantitySold,
+        $item->Quantity - $item->QuantitySold
+    );
+
     if (isset($item->ItemSpecifics)) {
         print("\nThis item has the following item specifics:\n\n");
 
@@ -114,6 +119,11 @@ if ($response->Ack !== 'Failure') {
             printf("\nSKU: %s\nStart Price: %s\n",
                 $variation->SKU,
                 $variation->StartPrice->value
+            );
+
+            printf("Quantity sold %s, quantiy available %s\n",
+                $variation->SellingStatus->QuantitySold,
+                $variation->Quantity - $variation->SellingStatus->QuantitySold
             );
 
             foreach($variation->VariationSpecifics as $specific) {
