@@ -68,3 +68,11 @@ These examples show how to use the eBay SDK for PHP with the Trading service.
 1. [Get my eBay selling](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/11-get-my-ebay-selling.php)
 
    An example that shows how to use the GetMyeBaySelling operation to return a list of actively selling items.
+
+1. [Verify Add fixed price item](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/12-verify-add-fixed-price-item.php)
+
+   An example that first verifys a fixed price item before listing it to the eBay sandbox.
+
+1. [Get Store](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/13-get-store.php)
+
+   A simple example that returns basic information about a store and any custom categories that belongs to it.
