@@ -17,3 +17,7 @@ These examples show how to use the eBay SDK for PHP with the Finding service.
 1. [Find items by product with item filters](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/finding/04-find-items-by-product-with-item-filters.php)
 
    This example expands upon the previous example to show how multiple item filters can be specified to reduce the number of items that are returned.
+
+1. [Find items advanced](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/finding/05-find-items-advanced.php)
+  
+   A basic example that uses findItemsAdvanced to perform a keyword search across two eBay categories.
