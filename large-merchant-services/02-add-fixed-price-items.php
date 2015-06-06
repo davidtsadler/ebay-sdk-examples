@@ -19,6 +19,10 @@
  * Include the SDK by using the autoloader from Composer.
  */
 require __DIR__.'/../vendor/autoload.php';
+/**
+ * Include some utility functions.
+ */
+require __DIR__.'/utils.php';
 
 /**
  * Include the configuration values.
@@ -37,6 +41,7 @@ $config = require __DIR__.'/../configuration.php';
 use \DTS\eBaySDK\Constants;
 use \DTS\eBaySDK\FileTransfer;
 use \DTS\eBaySDK\BulkDataExchange;
+use \DTS\eBaySDK\MerchantData;
 
 /**
  * Create the service objects.
@@ -56,22 +61,14 @@ $transferService = new FileTransfer\Services\FileTransferService(array(
     'sandbox' => true
 ));
 
-/**
- * Create the request objects
- *
- * For more information about creating a request object, see:
- * http://devbay.net/sdk/guides/getting-started/#request-object
- */
-$createUploadJobRequest = new BulkDataExchange\Types\CreateUploadJobRequest();
-$uploadFileRequest = new FileTransfer\Types\UploadFileRequest();
-$startUploadJobRequest = new BulkDataExchange\Types\StartUploadJobRequest();
-$getJobStatusRequest = new BulkDataExchange\Types\GetJobStatusRequest();
-$downloadFileRequest = new FileTransfer\Types\DownloadFileRequest();
+$merchantDataService = new MerchantData\Services\MerchantDataService();
+
 
 /**
  * Before anything can be uploaded a request needs to be made to obtain a job ID and file reference ID.
  * eBay needs to know the job type and a way to identify it.
  */
+$createUploadJobRequest = new BulkDataExchange\Types\CreateUploadJobRequest();
 $createUploadJobRequest->uploadJobType = 'AddFixedPriceItem';
 $createUploadJobRequest->UUID = uniqid();
 
@@ -109,6 +106,7 @@ if ($createUploadJobResponse->ack !== 'Failure') {
     /**
      * Pass the required values to the File Transfer service.
      */
+    $uploadFileRequest = new FileTransfer\Types\UploadFileRequest();
     $uploadFileRequest->fileReferenceId = $createUploadJobResponse->fileReferenceId;
     $uploadFileRequest->taskReferenceId = $createUploadJobResponse->jobId;
     $uploadFileRequest->fileFormat = 'gzip';
@@ -138,6 +136,7 @@ if ($createUploadJobResponse->ack !== 'Failure') {
         /**
          * Once the file has uploaded we can tell eBay to start processing it.
          */
+        $startUploadJobRequest = new BulkDataExchange\Types\StartUploadJobRequest();
         $startUploadJobRequest->jobId = $createUploadJobResponse->jobId;
 
         print('Request processing of fixed price items...');
@@ -157,6 +156,7 @@ if ($createUploadJobResponse->ack !== 'Failure') {
             /**
              * Now wait for the job to be processed.
              */
+            $getJobStatusRequest = new BulkDataExchange\Types\GetJobStatusRequest();
             $getJobStatusRequest->jobId = $createUploadJobResponse->jobId;
 
             $done = false;
@@ -196,6 +196,7 @@ if ($createUploadJobResponse->ack !== 'Failure') {
             }
 
             if (isset($downloadFileReferenceId)) {
+                $downloadFileRequest = new FileTransfer\Types\DownloadFileRequest();
                 $downloadFileRequest->fileReferenceId = $downloadFileReferenceId;
                 $downloadFileRequest->taskReferenceId = $createUploadJobResponse->jobId;
 
@@ -222,15 +223,29 @@ if ($createUploadJobResponse->ack !== 'Failure') {
                         /**
                          * Save the attachment to file system's temporary directory.
                          */
-                        $tempFilename = tempnam(sys_get_temp_dir(), 'add-fixed-price-item-responses-').'.zip';
-                        $fp = fopen($tempFilename, 'wb');
-                        if (!$fp) {
-                            printf("Failed. Cannot open %s to write!\n", $tempFilename);
-                        } else {
-                            fwrite($fp, $attachment['data']);
-                            fclose($fp);
+                        $filename = saveAttachment($attachment['data']);
+                        if ($filename !== false) {
+                            $xml = unZipArchive($filename);
+                            if ($xml !== false) {
+                                $responses = $merchantDataService->addFixedPriceItem($xml); 
+                                foreach ($responses as $response) {
+                                    if (isset($response->Errors)) {
+                                        foreach ($response->Errors as $error) {
+                                            printf("%s: %s\n%s\n\n",
+                                                $error->SeverityCode === MerchantData\Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
+                                                $error->ShortMessage,
+                                                $error->LongMessage
+                                            );
+                                        }
+                                    }
 
-                            printf("File downloaded to %s\nUnzip this file to obtain the fixed price item responses.\n\n", $tempFilename);
+                                    if ($response->Ack !== 'Failure') {
+                                        printf("The item was listed to the eBay Sandbox with the Item number %s\n",
+                                            $response->ItemID
+                                        );
+                                    }
+                                }
+                            }
                         }
                     } else {
                         print("Unable to locate attachment\n\n");

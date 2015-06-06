@@ -6,6 +6,7 @@
         "dts/ebay-sdk-business-policies-management": "~0.1",
         "dts/ebay-sdk-file-transfer": "~0.1",
         "dts/ebay-sdk-bulk-data-exchange": "~0.1",
-        "dts/ebay-sdk-half-finding": "~0.1"
+        "dts/ebay-sdk-half-finding": "~0.1",
+        "dts/ebay-sdk-merchant-data": "~0.1"
     }
 }
