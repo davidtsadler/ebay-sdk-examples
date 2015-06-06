@@ -227,7 +227,7 @@ if ($createUploadJobResponse->ack !== 'Failure') {
                         if ($filename !== false) {
                             $xml = unZipArchive($filename);
                             if ($xml !== false) {
-                                $responses = $merchantDataService->addFixedPriceItem($xml); 
+                                $responses = $merchantDataService->addFixedPriceItem($xml);
                                 foreach ($responses as $response) {
                                     if (isset($response->Errors)) {
                                         foreach ($response->Errors as $error) {
