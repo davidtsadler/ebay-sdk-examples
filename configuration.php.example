@@ -24,7 +24,7 @@
  * You risk exposing your eBay application keys to more people than intended.
  *
  * For more information about the configuration, see:
- * http://devbay.net/sdk/guides/sample_project.html#configuration
+ * http://devbay.net/sdk/guides/sample-project/
  */
 return array(
     'sandbox' => array(
