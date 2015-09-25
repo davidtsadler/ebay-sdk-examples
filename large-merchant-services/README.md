@@ -17,3 +17,7 @@ These examples show how to use the eBay SDK for PHP with the Large Merchant Serv
 1. [Set Shipment Tracking Info](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/large-merchant-services/04-set-shipment-tracking-info.php)
 
    This example uses the SetShipmentTrackingInfo available via the LMS.
+
+1. [Revise Inventory Status](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/large-merchant-services/05-revise-inventory-status.php)
+
+   This example uses the ReviseInventoryStatus available via the LMS.
