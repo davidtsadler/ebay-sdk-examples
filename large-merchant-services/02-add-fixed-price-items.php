@@ -43,6 +43,7 @@ use \DTS\eBaySDK\FileTransfer;
 use \DTS\eBaySDK\BulkDataExchange;
 use \DTS\eBaySDK\MerchantData;
 
+
 /**
  * Create the service objects.
  *
@@ -62,7 +63,6 @@ $transferService = new FileTransfer\Services\FileTransferService(array(
 ));
 
 $merchantDataService = new MerchantData\Services\MerchantDataService();
-
 
 /**
  * Before anything can be uploaded a request needs to be made to obtain a job ID and file reference ID.
@@ -110,11 +110,18 @@ if ($createUploadJobResponse->ack !== 'Failure') {
     $uploadFileRequest->fileReferenceId = $createUploadJobResponse->fileReferenceId;
     $uploadFileRequest->taskReferenceId = $createUploadJobResponse->jobId;
     $uploadFileRequest->fileFormat = 'gzip';
+
+    $payload = buildPayload();
+
     /**
-     * Attach the gzip file for uploading. You can see the XML used in this file at:
-     * https://github.com/davidtsadler/ebay-sdk-examples/blob/master/large-merchant-services/add-fixed-price-item-requests.xml
+     * Convert our payload to XML.
      */
-    $uploadFileRequest->attachment(file_get_contents(__DIR__.'/add-fixed-price-item-requests.xml.gz'));
+    $payloadXml = $payload->toRequestXml();
+
+    /**
+     * GZip and attach the XML payload.
+     */
+    $uploadFileRequest->attachment(gzencode($payloadXml, 9));
 
     /**
      * Now upload the file.
@@ -254,4 +261,80 @@ if ($createUploadJobResponse->ack !== 'Failure') {
             }
         }
     }
+}
+
+function buildPayload()
+{
+global $config;
+
+    $payload = new MerchantData\Types\BulkDataExchangeRequestsType();
+    $payload->Header = new MerchantData\Types\MerchantDataRequestHeaderType();
+    $payload->Header->SiteID = Constants\SiteIds::US;
+    $payload->Header->Version = $config['tradingApiVersion'];
+
+    $payload->AddFixedPriceItemRequest[] = buildAddFixedPriceItemRequest(array(
+        'title' => 'Example one',
+        'description' => 'Example one',
+        'sku' => 'abc-001',
+        'price' => 9.99,
+        'quantity' => 1
+    ));
+
+    $payload->AddFixedPriceItemRequest[] = buildAddFixedPriceItemRequest(array(
+        'title' => 'Example two',
+        'description' => 'Example two',
+        'sku' => 'abc-002',
+        'price' => 10.99,
+        'quantity' => 9
+    ));
+
+    return $payload;
+}
+
+function buildAddFixedPriceItemRequest($details)
+{
+global $config;
+
+    $request = new MerchantData\Types\AddFixedPriceItemRequestType();
+    $request->Version = $config['tradingApiVersion'];
+
+    $item = new MerchantData\Types\ItemType();
+    $item->ListingType = MerchantData\Enums\ListingTypeCodeType::C_FIXED_PRICE_ITEM;
+    $item->Quantity = $details['quantity'];
+    $item->ListingDuration = 'GTC';
+    $item->StartPrice = new MerchantData\Types\AmountType(array('value' => $details['price']));
+    $item->Title = $details['title'];
+    $item->Description = $details['description'];
+    $item->SKU = $details['sku'];
+    $item->Country = 'US';
+    $item->Location = 'Beverly Hills';
+    $item->PostalCode = '90210';
+    $item->Currency = 'USD';
+    $item->PictureDetails = new MerchantData\Types\PictureDetailsType();
+    $item->PictureDetails->GalleryType = MerchantData\Enums\GalleryTypeCodeType::C_GALLERY;
+    $item->PictureDetails->PictureURL = array('http://lorempixel.com/1500/1024/abstract');
+    $item->PrimaryCategory = new MerchantData\Types\CategoryType();
+    $item->PrimaryCategory->CategoryID = '29792';
+    $item->ConditionID = 1000;
+    $item->PaymentMethods = array(
+        'PayPal'
+    );
+    $item->PayPalEmailAddress = 'example@example.com';
+    $item->DispatchTimeMax = 1;
+    $item->ShippingDetails = new MerchantData\Types\ShippingDetailsType();
+    $item->ShippingDetails->ShippingType = MerchantData\Enums\ShippingTypeCodeType::C_FLAT;
+    $shippingService = new MerchantData\Types\ShippingServiceOptionsType();
+    $shippingService->ShippingServicePriority = 1;
+    $shippingService->ShippingService = 'Other';
+    $shippingService->ShippingServiceCost = new MerchantData\Types\AmountType(array('value' => 2.00));
+    $item->ShippingDetails->ShippingServiceOptions[] = $shippingService;
+    $item->ReturnPolicy = new MerchantData\Types\ReturnPolicyType();
+    $item->ReturnPolicy->ReturnsAcceptedOption = 'ReturnsAccepted';
+    $item->ReturnPolicy->RefundOption = 'MoneyBack';
+    $item->ReturnPolicy->ReturnsWithinOption = 'Days_14';
+    $item->ReturnPolicy->ShippingCostPaidByOption = 'Buyer';
+
+    $request->Item = $item;
+
+    return $request;
 }
