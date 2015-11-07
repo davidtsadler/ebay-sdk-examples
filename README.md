@@ -59,6 +59,8 @@ There are several examples for each service that the SDK supports and they are l
 
 1. [Resolution Case Management](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/resolution-case-management/README.md)
 
+1. [Return Management](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/return-management/README.md)
+
 1. [Misc](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/misc/README.md)
 
 To run an example from the command line use the `php` command followed by the name of the example file. 
