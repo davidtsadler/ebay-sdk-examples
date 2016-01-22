@@ -58,11 +58,11 @@ $siteId = Constants\SiteIds::US;
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Services\TradingService(array(
-    'apiVersion' => $config['tradingApiVersion'],
-    'sandbox' => true,
-    'siteId' => $siteId
-));
+$service = new Services\TradingService([
+    'credentials' => $config['sandbox']['credentials'],
+    'sandbox'     => true,
+    'siteId'      => $siteId
+]);
 
 /**
  * Create the request object.
@@ -79,7 +79,7 @@ $request = new Types\AddItemRequestType();
  * http://devbay.net/sdk/guides/application-keys/
  */
 $request->RequesterCredentials = new Types\CustomSecurityHeaderType();
-$request->RequesterCredentials->eBayAuthToken = $config['sandbox']['userToken'];
+$request->RequesterCredentials->eBayAuthToken = $config['sandbox']['authToken'];
 
 /**
  * Begin creating the auction item.
@@ -271,3 +271,4 @@ if ($response->Ack !== 'Failure') {
         $response->ItemID
     );
 }
+

@@ -44,10 +44,10 @@ use \DTS\eBaySDK\Trading\Types;
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Services\TradingService(array(
-    'apiVersion' => $config['tradingApiVersion'],
-    'siteId' => Constants\SiteIds::US
-));
+$service = new Services\TradingService([
+    'credentials' => $config['production']['credentials'],
+    'siteId'      => Constants\SiteIds::US
+]);
 
 /**
  * Create the request object.
@@ -64,7 +64,7 @@ $request = new Types\GetCategoriesRequestType();
  * http://devbay.net/sdk/guides/application-keys/
  */
 $request->RequesterCredentials = new Types\CustomSecurityHeaderType();
-$request->RequesterCredentials->eBayAuthToken = $config['production']['userToken'];
+$request->RequesterCredentials->eBayAuthToken = $config['production']['authToken'];
 
 /**
  * By specifying 'ReturnAll' we are telling the API return the full category hierarchy.
@@ -104,10 +104,10 @@ if ($response->Ack !== 'Success') {
     }
 } else {
     /**
-     * For the US site this will output approximately 18,000 categories.      
+     * For the US site this will output approximately 18,000 categories.
      */
     foreach ($response->CategoryArray->Category as $category) {
-        printf("Level %s : %s (%s) : Parent ID %s\n", 
+        printf("Level %s : %s (%s) : Parent ID %s\n",
             $category->CategoryLevel,
             $category->CategoryName,
             $category->CategoryID,
@@ -115,3 +115,4 @@ if ($response->Ack !== 'Success') {
         );
     }
 }
+

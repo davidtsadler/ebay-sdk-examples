@@ -26,21 +26,21 @@
  * For more information about the configuration, see:
  * http://devbay.net/sdk/guides/sample-project/
  */
-return array(
-    'sandbox' => array(
-        'devId' => 'YOUR_SANDBOX_DEVID_APPLICATION_KEY',
-        'appId' => 'YOUR_SANDBOX_APPID_APPLICATION_KEY',
-        'certId' => 'YOUR_SANDBOX_CERTID_APPLICATION_KEY',
-        'userToken' => 'YOUR_SANDBOX_USER_TOKEN_APPLICATION_KEY'
+return [
+    'sandbox' => [
+        'credentials' => [
+            'devId' => 'YOUR_SANDBOX_DEVID_APPLICATION_KEY',
+            'appId' => 'YOUR_SANDBOX_APPID_APPLICATION_KEY',
+            'certId' => 'YOUR_SANDBOX_CERTID_APPLICATION_KEY',
+        ],
+        'authToken' => 'YOUR_SANDBOX_USER_TOKEN_APPLICATION_KEY'
     ),
-    'production' => array(
-        'devId' => 'YOUR_PRODUCTION_DEVID_APPLICATION_KEY',
-        'appId' => 'YOUR_PRODUCTION_APPID_APPLICATION_KEY',
-        'certId' => 'YOUR_PRODUCTION_CERTID_APPLICATION_KEY',
-        'userToken' => 'YOUR_PRODUCTION_USER_TOKEN_APPLICATION_KEY'
-    ),
-    'findingApiVersion' => '1.12.0',
-    'tradingApiVersion' => '871',
-    'shoppingApiVersion' => '871',
-    'halfFindingApiVersion' => '1.2.0'
-);
+    'production' => [
+        'credentials' => [
+            'devId' => 'YOUR_PRODUCTION_DEVID_APPLICATION_KEY',
+            'appId' => 'YOUR_PRODUCTION_APPID_APPLICATION_KEY',
+            'certId' => 'YOUR_PRODUCTION_CERTID_APPLICATION_KEY',
+        ],
+        'authToken' => 'YOUR_PRODUCTION_USER_TOKEN_APPLICATION_KEY'
+    )
+];

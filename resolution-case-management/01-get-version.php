@@ -44,9 +44,10 @@ use \DTS\eBaySDK\ResolutionCaseManagement\Enums;
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Services\ResolutionCaseManagementService(array(
-    'authToken' => $config['production']['userToken']
-));
+$service = new Services\ResolutionCaseManagementService([
+    'credentials' => $config['production']['credentials'],
+    'authToken'   => $config['production']['authToken']
+]);
 
 /**
  * Create the request object.
@@ -82,3 +83,4 @@ if (isset($response->errorMessage)) {
 if ($response->ack !== 'Failure') {
     printf("The current version is: %s\n", $response->version);
 }
+

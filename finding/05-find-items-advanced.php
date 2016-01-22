@@ -45,11 +45,10 @@ use \DTS\eBaySDK\Finding\Enums;
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Services\FindingService(array(
-    'appId' => $config['production']['appId'],
-    'apiVersion' => $config['findingApiVersion'],
-    'globalId' => Constants\GlobalIds::US
-));
+$service = new Services\FindingService([
+    'credentials' => $config['production']['credentials'],
+    'globalId'    => Constants\GlobalIds::US
+]);
 
 /**
  * Create the request object.
@@ -167,3 +166,4 @@ for ($pageNum = 2; $pageNum <= $limit; $pageNum++ ) {
         }
     }
 }
+

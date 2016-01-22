@@ -44,10 +44,9 @@ use \DTS\eBaySDK\Shopping\Enums;
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Services\ShoppingService(array(
-    'apiVersion' => $config['shoppingApiVersion'],
-    'appId' => $config['production']['appId']
-));
+$service = new Services\ShoppingService([
+    'credentials' => $config['production']['credentials']
+]);
 
 /**
  * Create the request object.
@@ -154,3 +153,4 @@ if ($response->Ack !== 'Failure') {
         }
     }
 }
+

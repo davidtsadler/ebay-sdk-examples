@@ -45,11 +45,11 @@ use \DTS\eBaySDK\Trading\Enums;
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Services\TradingService(array(
-    'apiVersion' => $config['tradingApiVersion'],
-    'sandbox' => true,
-    'siteId' => Constants\SiteIds::US
-));
+$service = new Services\TradingService([
+    'credentials' => $config['sandbox']['credentials'],
+    'sandbox'     => true,
+    'siteId'      => Constants\SiteIds::US
+]);
 
 /**
  * Create the request object.
@@ -66,7 +66,7 @@ $request = new Types\UploadSiteHostedPicturesRequestType();
  * http://devbay.net/sdk/guides/application-keys/
  */
 $request->RequesterCredentials = new Types\CustomSecurityHeaderType();
-$request->RequesterCredentials->eBayAuthToken = $config['sandbox']['userToken'];
+$request->RequesterCredentials->eBayAuthToken = $config['sandbox']['authToken'];
 
 /**
  * Give the picture a name.
@@ -109,3 +109,4 @@ if ($response->Ack !== 'Failure') {
         $response->SiteHostedPictureDetails->FullURL
     );
 }
+

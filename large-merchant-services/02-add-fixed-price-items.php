@@ -38,6 +38,7 @@ $config = require __DIR__.'/../configuration.php';
 /**
  * The namespaces provided by the SDK.
  */
+use \DTS\eBaySDK\Sdk;
 use \DTS\eBaySDK\Constants;
 use \DTS\eBaySDK\FileTransfer;
 use \DTS\eBaySDK\BulkDataExchange;
@@ -52,16 +53,13 @@ use \DTS\eBaySDK\MerchantData;
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$exchangeService = new BulkDataExchange\Services\BulkDataExchangeService(array(
-    'authToken' => $config['sandbox']['userToken'],
-    'sandbox' => true
-));
-
-$transferService = new FileTransfer\Services\FileTransferService(array(
-    'authToken' => $config['sandbox']['userToken'],
-    'sandbox' => true
-));
-
+$sdk = new Sdk([
+    'credentials' => $config['sandbox']['credentials'],
+    'authToken'   => $config['sandbox']['authToken'],
+    'sandbox'     => true
+]);
+$exchangeService = $sdk->createBulkDataExchange();
+$transferService = $sdk->createFileTransfer();
 $merchantDataService = new MerchantData\Services\MerchantDataService();
 
 /**
@@ -97,7 +95,9 @@ if (isset($createUploadJobResponse->errorMessage)) {
     }
 }
 
-if ($createUploadJobResponse->ack !== 'Failure') {
+if(1) {
+$createUploadJobResponse->jobId = '50013886268';
+$createUploadJobResponse->fileReferenceId ='50014110938';
     printf("JobId [%s] FileReferenceId [%s]\n",
         $createUploadJobResponse->jobId,
         $createUploadJobResponse->fileReferenceId
@@ -270,7 +270,7 @@ global $config;
     $payload = new MerchantData\Types\BulkDataExchangeRequestsType();
     $payload->Header = new MerchantData\Types\MerchantDataRequestHeaderType();
     $payload->Header->SiteID = Constants\SiteIds::US;
-    $payload->Header->Version = $config['tradingApiVersion'];
+    $payload->Header->Version = '951';
 
     $payload->AddFixedPriceItemRequest[] = buildAddFixedPriceItemRequest(array(
         'title' => 'Example one',
@@ -296,7 +296,7 @@ function buildAddFixedPriceItemRequest($details)
 global $config;
 
     $request = new MerchantData\Types\AddFixedPriceItemRequestType();
-    $request->Version = $config['tradingApiVersion'];
+    $request->Version = '951'; 
 
     $item = new MerchantData\Types\ItemType();
     $item->ListingType = MerchantData\Enums\ListingTypeCodeType::C_FIXED_PRICE_ITEM;
@@ -338,3 +338,4 @@ global $config;
 
     return $request;
 }
+

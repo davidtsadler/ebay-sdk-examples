@@ -43,10 +43,9 @@ use \DTS\eBaySDK\Shopping\Types;
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Services\ShoppingService(array(
-    'apiVersion' => $config['shoppingApiVersion'],
-    'appId' => $config['production']['appId']
-));
+$service = new Services\ShoppingService([
+    'credentials' => $config['production']['credentials']
+]);
 
 /**
  * Create the request object.
@@ -79,3 +78,4 @@ if ($response->Ack !== 'Success') {
 } else {
     printf("The official eBay time is: %s\n", $response->Timestamp->format('H:i (\G\M\T) \o\n l jS F Y'));
 }
+

@@ -44,9 +44,10 @@ use \DTS\eBaySDK\ReturnManagement\Enums;
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Services\ReturnManagementService(array(
-    'authToken' => $config['production']['userToken']
-));
+$service = new Services\ReturnManagementService([
+    'credentials' => $config['production']['credentials'],
+    'authToken'   => $config['production']['authToken']
+]);
 
 /**
  * Create the request object.
@@ -82,3 +83,4 @@ if (isset($response->errorMessage)) {
 if ($response->ack !== 'Failure') {
     printf("The current version is: %s\n", $response->version);
 }
+

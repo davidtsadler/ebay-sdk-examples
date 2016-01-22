@@ -45,10 +45,10 @@ use \DTS\eBaySDK\Trading\Enums;
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Services\TradingService(array(
-    'apiVersion' => $config['tradingApiVersion'],
-    'siteId' => Constants\SiteIds::US
-));
+$service = new Services\TradingService([
+    'credentials' => $config['production']['credentials'],
+    'siteId'      => Constants\SiteIds::US
+]);
 
 /**
  * Create the request object.
@@ -67,7 +67,7 @@ $request = new Types\GetStoreRequestType();
  * http://devbay.net/sdk/guides/application-keys/
  */
 $request->RequesterCredentials = new Types\CustomSecurityHeaderType();
-$request->RequesterCredentials->eBayAuthToken = $config['production']['userToken'];
+$request->RequesterCredentials->eBayAuthToken = $config['production']['authToken'];
 
 /**
  * Send the request to the GetStore service operation.
@@ -121,3 +121,4 @@ function printCategory($category, $level)
         printCategory($category, $level + 1);
     }
 }
+

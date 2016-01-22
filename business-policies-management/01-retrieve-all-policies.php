@@ -49,10 +49,11 @@ use \DTS\eBaySDK\BusinessPoliciesManagement\Types;
  * For more information about getting your user tokens, see:
  * http://devbay.net/sdk/guides/application-keys/
  */
-$service = new Services\BusinessPoliciesManagementService(array(
-    'authToken' => $config['production']['userToken'],
-    'globalId' => Constants\GlobalIds::US
-));
+$service = new Services\BusinessPoliciesManagementService([
+    'credentials' => $config['production']['credentials'],
+    'authToken'   => $config['production']['authToken'],
+    'globalId'    => Constants\GlobalIds::US
+]);
 
 /**
  * Create the request object.
@@ -121,3 +122,4 @@ if ($response->ack !== 'Success') {
         }
     }
 }
+

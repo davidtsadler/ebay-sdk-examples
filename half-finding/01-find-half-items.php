@@ -45,11 +45,10 @@ use \DTS\eBaySDK\HalfFinding\Enums;
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Services\HalfFindingService(array(
-    'appId' => $config['production']['appId'],
-    'apiVersion' => $config['halfFindingApiVersion'],
-    'globalId' => Constants\GlobalIds::US
-));
+$service = new Services\HalfFindingService([
+    'credentials' => $config['production']['credentials'],
+    'globalId'    => Constants\GlobalIds::US
+]);
 
 /**
  * Create the request object.
@@ -163,3 +162,4 @@ if (isset($response->product)) {
         }
     }
 }
+

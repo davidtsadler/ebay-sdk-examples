@@ -45,10 +45,10 @@ use \DTS\eBaySDK\Trading\Enums;
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Services\TradingService(array(
-    'apiVersion' => $config['tradingApiVersion'],
-    'siteId' => Constants\SiteIds::US
-));
+$service = new Services\TradingService([
+    'credentials' => $config['production']['credentials'],
+    'siteId'      => Constants\SiteIds::US
+]);
 
 /**
  * Create the request object.
@@ -65,7 +65,7 @@ $request = new Types\GetMyeBaySellingRequestType();
  * http://devbay.net/sdk/guides/application-keys/
  */
 $request->RequesterCredentials = new Types\CustomSecurityHeaderType();
-$request->RequesterCredentials->eBayAuthToken = $config['production']['userToken'];
+$request->RequesterCredentials->eBayAuthToken = $config['production']['authToken'];
 
 /**
  * Request that eBay returns the list of actively selling items.
@@ -122,3 +122,4 @@ do {
     $pageNum += 1;
 
 } while(isset($response->ActiveList) && $pageNum <= $response->ActiveList->PaginationResult->TotalNumberOfPages);
+

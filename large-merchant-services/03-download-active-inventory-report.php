@@ -38,6 +38,7 @@ $config = require __DIR__.'/../configuration.php';
 /**
  * The namespaces provided by the SDK.
  */
+use \DTS\eBaySDK\Sdk;
 use \DTS\eBaySDK\Constants;
 use \DTS\eBaySDK\FileTransfer;
 use \DTS\eBaySDK\BulkDataExchange;
@@ -51,16 +52,13 @@ use \DTS\eBaySDK\MerchantData;
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$exchangeService = new BulkDataExchange\Services\BulkDataExchangeService(array(
-    'authToken' => $config['sandbox']['userToken'],
-    'sandbox' => true
-));
-
-$transferService = new FileTransfer\Services\FileTransferService(array(
-    'authToken' => $config['sandbox']['userToken'],
-    'sandbox' => true
-));
-
+$sdk = new Sdk([
+    'credentials' => $config['sandbox']['credentials'],
+    'authToken'   => $config['sandbox']['authToken'],
+    'sandbox'     => true
+]);
+$exchangeService = $sdk->createBulkDataExchange();
+$transferService = $sdk->createFileTransfer();
 $merchantDataService = new MerchantData\Services\MerchantDataService();
 
 /**
@@ -217,3 +215,4 @@ if ($startDownloadJobResponse->ack !== 'Failure') {
         }
     }
 }
+

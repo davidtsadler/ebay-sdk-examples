@@ -39,72 +39,51 @@ use \DTS\eBaySDK\Trading\Services;
 use \DTS\eBaySDK\Trading\Types;
 
 /**
- * An instance of this class will be passed to the service object.
- * It will be responsible for sending the HTTP POST request.
+ * Handler that will be responsible for sending the HTTP POST request
+ * and returning the XML response.
  */
-class HttpClient implements \DTS\eBaySDK\Interfaces\HttpClientInterface
-{
-    public function __construct() {}
+$handler = function (Psr\Http\Message\RequestInterface $request) {
+    $curlHeaders = [];
+    foreach ($request->getHeaders() as $key => $value) {
+        $curlHeaders[] =  "$key:".implode(',', $value); 
+    }
 
     /**
-     * This method will be called by the SDK to perform a POST HTTP request.
-     *
-     * @param string $url The API endpoint.
-     * @param array $headers An associative array of HTTP headers.
-     * @param string $body The request's body.
-     *
-     * @return string The response body.
+     * For this example we will just use cURL
      */
-    public function post($url, $headers, $body)
-    {
-        /**
-         * Convert the associative arary into an array that cURL can use.
-         * $curlHeaders = array_map(function ($key, $value) { return "$key:$value"; }, array_keys($headers), array_values($headers));
-         */
-        $curlHeaders = array();
-        foreach($headers as $key => $value) {
-            $curlHeaders[] =  "$key:$value"; 
-        }
+    $connection = curl_init();
 
-        /**
-         * For this example we will just use cURL
-         */
-		$connection = curl_init();
+    curl_setopt($connection, CURLOPT_URL, $request->getUri());
+    curl_setopt($connection, CURLOPT_HTTPHEADER, $curlHeaders);
+    curl_setopt($connection, CURLOPT_POST, 1);
+    curl_setopt($connection, CURLOPT_POSTFIELDS, $request->getBody()->getContents());
+    curl_setopt($connection, CURLOPT_RETURNTRANSFER, 1);
 
-		curl_setopt($connection, CURLOPT_URL, $url);
-		curl_setopt($connection, CURLOPT_HTTPHEADER, $curlHeaders);
-		curl_setopt($connection, CURLOPT_POST, 1);
-		curl_setopt($connection, CURLOPT_POSTFIELDS, $body);
-		curl_setopt($connection, CURLOPT_RETURNTRANSFER, 1);
-		
-        /**
-         * WARNING: You will not want to do this in production!
-         */
-		curl_setopt($connection, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($connection, CURLOPT_SSL_VERIFYHOST, 0);
-		curl_setopt($connection, CURLOPT_VERBOSE, 1);
-		
-		$response = curl_exec($connection);
+    /**
+     * WARNING: You will not want to do this in production!
+     */
+    curl_setopt($connection, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($connection, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($connection, CURLOPT_VERBOSE, 1);
 
-		curl_close($connection);
-		
-		//return the response
-		return $response;
-    }
-}
+    $response = curl_exec($connection);
+
+    curl_close($connection);
+
+    return $response;
+};
 
 /**
  * Create the service object. 
  *
- * We pass in an instance of our HttpClient into the second parameter.
- *
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Services\TradingService(array(
-    'apiVersion' => $config['tradingApiVersion'],
-    'siteId' => Constants\SiteIds::US
-), new HttpClient());
+$service = new Services\TradingService([
+    'credentials' => $config['production']['credentials'],
+    'siteId'      => Constants\SiteIds::US,
+    'handler'     => $handler
+]);
 
 /**
  * Create the request object.
@@ -121,7 +100,7 @@ $request = new Types\GeteBayOfficialTimeRequestType();
  * http://devbay.net/sdk/guides/application-keys/
  */
 $request->RequesterCredentials = new Types\CustomSecurityHeaderType();
-$request->RequesterCredentials->eBayAuthToken = $config['production']['userToken'];
+$request->RequesterCredentials->eBayAuthToken = $config['production']['authToken'];
 
 /**
  * Send the request to the GeteBayOfficialTime service operation.
@@ -146,3 +125,4 @@ if ($response->Ack !== 'Success') {
 } else {
     printf("The official eBay time is: %s\n", $response->Timestamp->format('H:i (\G\M\T) \o\n l jS F Y'));
 }
+

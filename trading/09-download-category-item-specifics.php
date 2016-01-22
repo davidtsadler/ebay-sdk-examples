@@ -34,6 +34,7 @@ $config = require __DIR__.'/../configuration.php';
 /**
  * The namespaces provided by the SDK.
  */
+use \DTS\eBaySDK\Sdk;
 use \DTS\eBaySDK\Constants;
 use \DTS\eBaySDK\Trading;
 use \DTS\eBaySDK\FileTransfer;
@@ -57,16 +58,19 @@ use \DTS\eBaySDK\FileTransfer;
  */
 $siteId = Constants\SiteIds::US;
 
+$sdk = new Sdk([
+    'credentials' => $config['production']['credentials'],
+    'authToken'   => $config['production']['authToken'],
+    'siteId'      => $siteId
+]);
+
 /**
  * Create the service object.
  *
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Trading\Services\TradingService(array(
-    'apiVersion' => $config['tradingApiVersion'],
-    'siteId' => $siteId
-));
+$service = $sdk->createTrading();
 
 /**
  * Create the request object.
@@ -75,15 +79,6 @@ $service = new Trading\Services\TradingService(array(
  * http://devbay.net/sdk/guides/getting-started/#request-object
  */
 $request = new Trading\Types\GetCategorySpecificsRequestType();
-
-/**
- * An user token is required when using the Trading service.
- *
- * For more information about getting your user tokens, see:
- * http://devbay.net/sdk/guides/application-keys/
- */
-$request->RequesterCredentials = new Trading\Types\CustomSecurityHeaderType();
-$request->RequesterCredentials->eBayAuthToken = $config['production']['userToken'];
 
 /**
  * Request the FileReferenceID and TaskReferenceID from eBay.
@@ -128,13 +123,7 @@ if ($response->Ack !== 'Failure') {
 
     print("Downloading file...\n");
 
-    /**
-     * An user token is required when using the File Transfer service.
-     * Note that unlike the Trading service this token is not passed in via the request object.
-     */
-    $service = new FileTransfer\Services\FileTransferService(array(
-        'authToken' => $config['production']['userToken']
-    ));
+    $service = $sdk->createFileTransfer();
 
     $request = new FileTransfer\Types\DownloadFileRequest();
 
@@ -177,3 +166,4 @@ if ($response->Ack !== 'Failure') {
         }
     }
 }
+

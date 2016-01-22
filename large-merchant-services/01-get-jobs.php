@@ -44,10 +44,11 @@ use \DTS\eBaySDK\BulkDataExchange\Types;
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
  */
-$service = new Services\BulkDataExchangeService(array(
-    'authToken' => $config['sandbox']['userToken'],
-    'sandbox' => true
-));
+$service = new Services\BulkDataExchangeService([
+    'credentials' => $config['production']['credentials'],
+    'authToken'   => $config['sandbox']['authToken'],
+    'sandbox'     => true
+]);
 
 /**
  * Create the request object.
@@ -84,7 +85,7 @@ if ($response->ack !== 'Failure') {
     /**
      * Just display the first 3 jobs from the response.
      */
-    $upTo = min(count($response->jobProfile), 3);
+    $upTo = min(count($response->jobProfile), 300);
     for($x = 0; $x < $upTo; $x++) {
         $job = $response->jobProfile[$x];
         printf("ID: %s\nType: %s\nStatus: %s\nInput File Reference ID: %s\nFile Reference ID: %s\nPercent Complete: %s\nCreated: %s\nCompleted: %s\n\n",
@@ -99,3 +100,4 @@ if ($response->ack !== 'Failure') {
         );
     }
 }
+
