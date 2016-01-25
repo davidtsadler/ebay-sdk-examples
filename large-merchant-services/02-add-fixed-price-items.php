@@ -95,9 +95,7 @@ if (isset($createUploadJobResponse->errorMessage)) {
     }
 }
 
-if(1) {
-$createUploadJobResponse->jobId = '50013886268';
-$createUploadJobResponse->fileReferenceId ='50014110938';
+if ($createUploadJobResponse->ack !== 'Failure') {
     printf("JobId [%s] FileReferenceId [%s]\n",
         $createUploadJobResponse->jobId,
         $createUploadJobResponse->fileReferenceId
@@ -296,7 +294,7 @@ function buildAddFixedPriceItemRequest($details)
 global $config;
 
     $request = new MerchantData\Types\AddFixedPriceItemRequestType();
-    $request->Version = '951'; 
+    $request->Version = '951';
 
     $item = new MerchantData\Types\ItemType();
     $item->ListingType = MerchantData\Enums\ListingTypeCodeType::C_FIXED_PRICE_ITEM;
