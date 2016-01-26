@@ -85,7 +85,7 @@ if ($response->ack !== 'Failure') {
     /**
      * Just display the first 3 jobs from the response.
      */
-    $upTo = min(count($response->jobProfile), 300);
+    $upTo = min(count($response->jobProfile), 3);
     for($x = 0; $x < $upTo; $x++) {
         $job = $response->jobProfile[$x];
         printf("ID: %s\nType: %s\nStatus: %s\nInput File Reference ID: %s\nFile Reference ID: %s\nPercent Complete: %s\nCreated: %s\nCompleted: %s\n\n",
