@@ -87,7 +87,8 @@ print("Done\n");
  */
 if (isset($createUploadJobResponse->errorMessage)) {
     foreach ($createUploadJobResponse->errorMessage->error as $error) {
-        printf("%s: %s\n\n",
+        printf(
+            "%s: %s\n\n",
             $error->severity === BulkDataExchange\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
             $error->message
         );
@@ -95,7 +96,8 @@ if (isset($createUploadJobResponse->errorMessage)) {
 }
 
 if ($createUploadJobResponse->ack !== 'Failure') {
-    printf("JobId [%s] FileReferenceId [%s]\n",
+    printf(
+        "JobId [%s] FileReferenceId [%s]\n",
         $createUploadJobResponse->jobId,
         $createUploadJobResponse->fileReferenceId
     );
@@ -168,7 +170,8 @@ if ($createUploadJobResponse->ack !== 'Failure') {
 
     if (isset($uploadFileResponse->errorMessage)) {
         foreach ($uploadFileResponse->errorMessage->error as $error) {
-            printf("%s: %s\n\n",
+            printf(
+                "%s: %s\n\n",
                 $error->severity === FileTransfer\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
                 $error->message
             );
@@ -188,7 +191,8 @@ if ($createUploadJobResponse->ack !== 'Failure') {
 
         if (isset($startUploadJobResponse->errorMessage)) {
             foreach ($startUploadJobResponse->errorMessage->error as $error) {
-                printf("%s: %s\n\n",
+                printf(
+                    "%s: %s\n\n",
                     $error->severity === BulkDataExchange\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
                     $error->message
                 );
@@ -204,12 +208,13 @@ if ($createUploadJobResponse->ack !== 'Failure') {
 
             $done = false;
 
-            while(!$done) {
+            while (!$done) {
                 $getJobStatusResponse = $exchangeService->getJobStatus($getJobStatusRequest);
 
                 if (isset($getJobStatusResponse->errorMessage)) {
                     foreach ($getJobStatusResponse->errorMessage->error as $error) {
-                        printf("%s: %s\n\n",
+                        printf(
+                            "%s: %s\n\n",
                             $error->severity === BulkDataExchange\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
                             $error->message
                         );
@@ -219,8 +224,7 @@ if ($createUploadJobResponse->ack !== 'Failure') {
                 if ($getJobStatusResponse->ack !== 'Failure') {
                     printf("Status is %s\n", $getJobStatusResponse->jobProfile[0]->jobStatus);
 
-                    switch($getJobStatusResponse->jobProfile[0]->jobStatus)
-                    {
+                    switch ($getJobStatusResponse->jobProfile[0]->jobStatus) {
                         case BulkDataExchange\Enums\JobStatus::C_COMPLETED:
                             $downloadFileReferenceId = $getJobStatusResponse->jobProfile[0]->fileReferenceId;
                             $done = true;
@@ -249,7 +253,8 @@ if ($createUploadJobResponse->ack !== 'Failure') {
 
                 if (isset($downloadFileResponse->errorMessage)) {
                     foreach ($downloadFileResponse->errorMessage->error as $error) {
-                        printf("%s: %s\n\n",
+                        printf(
+                            "%s: %s\n\n",
                             $error->severity === FileTransfer\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
                             $error->message
                         );
@@ -274,7 +279,8 @@ if ($createUploadJobResponse->ack !== 'Failure') {
                                 foreach ($responses as $response) {
                                     if (isset($response->Errors)) {
                                         foreach ($response->Errors as $error) {
-                                            printf("%s: %s\n%s\n\n",
+                                            printf(
+                                                "%s: %s\n%s\n\n",
                                                 $error->SeverityCode === MerchantData\Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
                                                 $error->ShortMessage,
                                                 $error->LongMessage
@@ -283,7 +289,8 @@ if ($createUploadJobResponse->ack !== 'Failure') {
                                     }
 
                                     if ($response->Ack !== 'Failure') {
-                                        printf("OrderLineItemID %s\n",
+                                        printf(
+                                            "OrderLineItemID %s\n",
                                             $response->OrderLineItemID
                                         );
                                     }
@@ -298,4 +305,3 @@ if ($createUploadJobResponse->ack !== 'Failure') {
         }
     }
 }
-

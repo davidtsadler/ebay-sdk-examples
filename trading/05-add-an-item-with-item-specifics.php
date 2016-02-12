@@ -107,7 +107,7 @@ $item->PrimaryCategory->CategoryID = '29792';
  *  Gemstone=Amber
  *
  * The names and values that are available will depend upon the category the item is listed in.
- * Before specifying your item specifics you would normally call GetCategorySpecifics to get 
+ * Before specifying your item specifics you would normally call GetCategorySpecifics to get
  * a list of names and values that are recommended by eBay.
  * Showing how to do this is beyond the scope of this example but it can be assumed that
  * a call has previously been made and the following names and values were returned.
@@ -118,7 +118,7 @@ $item->PrimaryCategory->CategoryID = '29792';
  * Length=Unabridged
  * Language=English
  *
- * In addition to the names and values that eBay has recommended this item will list with 
+ * In addition to the names and values that eBay has recommended this item will list with
  * its own custom item specifics.
  *
  * Bit rate=320 kbit/s
@@ -157,7 +157,7 @@ $specific->Name = 'Language';
 $specific->Value[] = 'English';
 $item->ItemSpecifics->NameValueList[] = $specific;
 
-/** 
+/**
  * Add the two custom item specifics.
  * Notice they are no different to eBay recommended item specifics.
  */
@@ -211,7 +211,8 @@ $response = $service->addFixedPriceItem($request);
  */
 if (isset($response->Errors)) {
     foreach ($response->Errors as $error) {
-        printf("%s: %s\n%s\n\n",
+        printf(
+            "%s: %s\n%s\n\n",
             $error->SeverityCode === Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
             $error->ShortMessage,
             $error->LongMessage
@@ -220,8 +221,8 @@ if (isset($response->Errors)) {
 }
 
 if ($response->Ack !== 'Failure') {
-    printf("The item was listed to the eBay Sandbox with the Item number %s\n",
+    printf(
+        "The item was listed to the eBay Sandbox with the Item number %s\n",
         $response->ItemID
     );
 }
-

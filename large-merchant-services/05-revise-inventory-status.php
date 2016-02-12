@@ -88,7 +88,8 @@ print("Done\n");
  */
 if (isset($createUploadJobResponse->errorMessage)) {
     foreach ($createUploadJobResponse->errorMessage->error as $error) {
-        printf("%s: %s\n\n",
+        printf(
+            "%s: %s\n\n",
             $error->severity === BulkDataExchange\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
             $error->message
         );
@@ -96,7 +97,8 @@ if (isset($createUploadJobResponse->errorMessage)) {
 }
 
 if ($createUploadJobResponse->ack !== 'Failure') {
-    printf("JobId [%s] FileReferenceId [%s]\n",
+    printf(
+        "JobId [%s] FileReferenceId [%s]\n",
         $createUploadJobResponse->jobId,
         $createUploadJobResponse->fileReferenceId
     );
@@ -130,7 +132,8 @@ if ($createUploadJobResponse->ack !== 'Failure') {
 
     if (isset($uploadFileResponse->errorMessage)) {
         foreach ($uploadFileResponse->errorMessage->error as $error) {
-            printf("%s: %s\n\n",
+            printf(
+                "%s: %s\n\n",
                 $error->severity === FileTransfer\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
                 $error->message
             );
@@ -150,7 +153,8 @@ if ($createUploadJobResponse->ack !== 'Failure') {
 
         if (isset($startUploadJobResponse->errorMessage)) {
             foreach ($startUploadJobResponse->errorMessage->error as $error) {
-                printf("%s: %s\n\n",
+                printf(
+                    "%s: %s\n\n",
                     $error->severity === BulkDataExchange\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
                     $error->message
                 );
@@ -166,12 +170,13 @@ if ($createUploadJobResponse->ack !== 'Failure') {
 
             $done = false;
 
-            while(!$done) {
+            while (!$done) {
                 $getJobStatusResponse = $exchangeService->getJobStatus($getJobStatusRequest);
 
                 if (isset($getJobStatusResponse->errorMessage)) {
                     foreach ($getJobStatusResponse->errorMessage->error as $error) {
-                        printf("%s: %s\n\n",
+                        printf(
+                            "%s: %s\n\n",
                             $error->severity === BulkDataExchange\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
                             $error->message
                         );
@@ -181,8 +186,7 @@ if ($createUploadJobResponse->ack !== 'Failure') {
                 if ($getJobStatusResponse->ack !== 'Failure') {
                     printf("Status is %s\n", $getJobStatusResponse->jobProfile[0]->jobStatus);
 
-                    switch($getJobStatusResponse->jobProfile[0]->jobStatus)
-                    {
+                    switch ($getJobStatusResponse->jobProfile[0]->jobStatus) {
                         case BulkDataExchange\Enums\JobStatus::C_COMPLETED:
                             $downloadFileReferenceId = $getJobStatusResponse->jobProfile[0]->fileReferenceId;
                             $done = true;
@@ -211,7 +215,8 @@ if ($createUploadJobResponse->ack !== 'Failure') {
 
                 if (isset($downloadFileResponse->errorMessage)) {
                     foreach ($downloadFileResponse->errorMessage->error as $error) {
-                        printf("%s: %s\n\n",
+                        printf(
+                            "%s: %s\n\n",
                             $error->severity === FileTransfer\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
                             $error->message
                         );
@@ -236,7 +241,8 @@ if ($createUploadJobResponse->ack !== 'Failure') {
                                 foreach ($responses as $response) {
                                     if (isset($response->Errors)) {
                                         foreach ($response->Errors as $error) {
-                                            printf("%s: %s\n%s\n\n",
+                                            printf(
+                                                "%s: %s\n%s\n\n",
                                                 $error->SeverityCode === MerchantData\Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
                                                 $error->ShortMessage,
                                                 $error->LongMessage
@@ -245,8 +251,9 @@ if ($createUploadJobResponse->ack !== 'Failure') {
                                     }
 
                                     if ($response->Ack !== 'Failure') {
-                                        foreach($response->InventoryStatus as $status) {
-                                            printf("The Item %s has Quantity of %s and the Start Price of %s\n",
+                                        foreach ($response->InventoryStatus as $status) {
+                                            printf(
+                                                "The Item %s has Quantity of %s and the Start Price of %s\n",
                                                 $status->ItemID,
                                                 $status->Quantity,
                                                 isset($status->StartPrice) ? $status->StartPrice->value : ''
@@ -267,7 +274,7 @@ if ($createUploadJobResponse->ack !== 'Failure') {
 
 function buildPayload()
 {
-global $config;
+    global $config;
 
     $payload = new MerchantData\Types\BulkDataExchangeRequestsType();
     $payload->Header = new MerchantData\Types\MerchantDataRequestHeaderType();
@@ -296,28 +303,27 @@ global $config;
 
 function buildReviseInventoryStatusRequest($items)
 {
-global $config;
+    global $config;
 
     $request = new MerchantData\Types\ReviseInventoryStatusRequestType();
     $request->Version = '951';
 
     foreach ($items as $item) {
-      $inventoryStatus = new MerchantData\Types\InventoryStatusType();
-      if (array_key_exists('id', $item)) {
-          $inventoryStatus->ItemID = $item['id'];
-      }
-      if (array_key_exists('sku', $item)) {
-          $inventoryStatus->SKU = $item['sku'];
-      }
-      if (array_key_exists('quantity', $item)) {
-          $inventoryStatus->Quantity = $item['quantity'];
-      }
-      if (array_key_exists('startPrice', $item)) {
-          $inventoryStatus->StartPrice = new MerchantData\Types\AmountType(array('value' => $item['startPrice']));
-      }
-      $request->InventoryStatus[] = $inventoryStatus;
+        $inventoryStatus = new MerchantData\Types\InventoryStatusType();
+        if (array_key_exists('id', $item)) {
+            $inventoryStatus->ItemID = $item['id'];
+        }
+        if (array_key_exists('sku', $item)) {
+            $inventoryStatus->SKU = $item['sku'];
+        }
+        if (array_key_exists('quantity', $item)) {
+            $inventoryStatus->Quantity = $item['quantity'];
+        }
+        if (array_key_exists('startPrice', $item)) {
+            $inventoryStatus->StartPrice = new MerchantData\Types\AmountType(array('value' => $item['startPrice']));
+        }
+        $request->InventoryStatus[] = $inventoryStatus;
     }
 
     return $request;
 }
-

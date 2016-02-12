@@ -79,7 +79,8 @@ $response = $service->findItemsByProduct($request);
 
 if (isset($response->errorMessage)) {
     foreach ($response->errorMessage->error as $error) {
-        printf("%s: %s\n\n",
+        printf(
+            "%s: %s\n\n",
             $error->severity=== Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
             $error->message
         );
@@ -94,7 +95,8 @@ if (isset($response->errorMessage)) {
  */
 if ($response->ack !== 'Failure') {
     foreach ($response->searchResult->item as $item) {
-        printf("(%s) %s: %s %.2f\n",
+        printf(
+            "(%s) %s: %s %.2f\n",
             $item->itemId,
             $item->title,
             $item->sellingStatus->currentPrice->currencyId,
@@ -102,4 +104,3 @@ if ($response->ack !== 'Failure') {
         );
     }
 }
-

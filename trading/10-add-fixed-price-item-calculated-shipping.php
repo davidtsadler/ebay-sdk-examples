@@ -232,11 +232,11 @@ $item->ShippingPackageDetails = $packageDetails;
  *
  * A call is made to the GeteBayDetails operation for the site that you are listing to.
  * The value ShippingServiceDetails is specified in the DetailName field in the request.
- * Iterate through the ShippingServiceDetails collection in the response. 
+ * Iterate through the ShippingServiceDetails collection in the response.
  * Each item is a shipping service that can support more than one type of shipping.
  * Ignore any service where the ValidForSellingFlow property is false or not present. (This indicates that you cannot list with this service!)
  * For each service iterate over the ServiceType collection. If any have the value of Calculated then
- * the service can be used with Calculated shipping. 
+ * the service can be used with Calculated shipping.
  */
 $shippingService = new Types\ShippingServiceOptionsType();
 $shippingService->ShippingServicePriority = 1;
@@ -319,7 +319,8 @@ $response = $service->addFixedPriceItem($request);
  */
 if (isset($response->Errors)) {
     foreach ($response->Errors as $error) {
-        printf("%s: %s\n%s\n\n",
+        printf(
+            "%s: %s\n%s\n\n",
             $error->SeverityCode === Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
             $error->ShortMessage,
             $error->LongMessage
@@ -328,8 +329,8 @@ if (isset($response->Errors)) {
 }
 
 if ($response->Ack !== 'Failure') {
-    printf("The item was listed to the eBay Sandbox with the Item number %s\n",
+    printf(
+        "The item was listed to the eBay Sandbox with the Item number %s\n",
         $response->ItemID
     );
 }
-

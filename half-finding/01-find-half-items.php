@@ -114,7 +114,8 @@ $response = $service->findHalfItems($request);
  */
 if (isset($response->errorMessage)) {
     foreach ($response->errorMessage->error as $error) {
-        printf("%s: %s\n\n",
+        printf(
+            "%s: %s\n\n",
             $error->severity=== Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
             $error->message
         );
@@ -122,7 +123,8 @@ if (isset($response->errorMessage)) {
 }
 
 if (isset($response->product)) {
-    printf("%s items found over %s pages found for %s.\n\n",
+    printf(
+        "%s items found over %s pages found for %s.\n\n",
         $response->paginationOutput->totalEntries,
         $response->paginationOutput->totalPages,
         $response->product->title
@@ -131,7 +133,8 @@ if (isset($response->product)) {
     echo "==================\nResults for page 1\n==================\n";
 
     foreach ($response->product->item as $item) {
-        printf("%s: %s %.2f from %s\n",
+        printf(
+            "%s: %s %.2f from %s\n",
             $item->itemID,
             $item->price->currencyId,
             $item->price->value,
@@ -143,7 +146,7 @@ if (isset($response->product)) {
      * Paginate through 2 more pages worth of results.
      */
     $limit = min($response->paginationOutput->totalPages, 3);
-    for ($pageNum = 2; $pageNum <= $limit; $pageNum++ ) {
+    for ($pageNum = 2; $pageNum <= $limit; $pageNum++) {
         $request->paginationInput->pageNumber = $pageNum;
 
         $response = $service->findHalfItems($request);
@@ -152,7 +155,8 @@ if (isset($response->product)) {
             echo "==================\nResults for page $pageNum\n==================\n";
 
             foreach ($response->product->item as $item) {
-                printf("%s: %s %.2f from %s\n",
+                printf(
+                    "%s: %s %.2f from %s\n",
                     $item->itemID,
                     $item->price->currencyId,
                     $item->price->value,
@@ -162,4 +166,3 @@ if (isset($response->product)) {
         }
     }
 }
-

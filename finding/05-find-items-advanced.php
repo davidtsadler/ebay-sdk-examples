@@ -113,7 +113,8 @@ $response = $service->findItemsAdvanced($request);
 
 if (isset($response->errorMessage)) {
     foreach ($response->errorMessage->error as $error) {
-        printf("%s: %s\n\n",
+        printf(
+            "%s: %s\n\n",
             $error->severity=== Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
             $error->message
         );
@@ -126,7 +127,8 @@ if (isset($response->errorMessage)) {
  * For more information about working with the service response object, see:
  * http://devbay.net/sdk/guides/getting-started/#response-object
  */
-printf("%s items found over %s pages.\n\n",
+printf(
+    "%s items found over %s pages.\n\n",
     $response->paginationOutput->totalEntries,
     $response->paginationOutput->totalPages
 );
@@ -135,7 +137,8 @@ echo "==================\nResults for page 1\n==================\n";
 
 if ($response->ack !== 'Failure') {
     foreach ($response->searchResult->item as $item) {
-        printf("(%s) %s: %s %.2f\n",
+        printf(
+            "(%s) %s: %s %.2f\n",
             $item->itemId,
             $item->title,
             $item->sellingStatus->currentPrice->currencyId,
@@ -148,7 +151,7 @@ if ($response->ack !== 'Failure') {
  * Paginate through 2 more pages worth of results.
  */
 $limit = min($response->paginationOutput->totalPages, 3);
-for ($pageNum = 2; $pageNum <= $limit; $pageNum++ ) {
+for ($pageNum = 2; $pageNum <= $limit; $pageNum++) {
     $request->paginationInput->pageNumber = $pageNum;
 
     $response = $service->findItemsAdvanced($request);
@@ -157,7 +160,8 @@ for ($pageNum = 2; $pageNum <= $limit; $pageNum++ ) {
 
     if ($response->ack !== 'Failure') {
         foreach ($response->searchResult->item as $item) {
-            printf("(%s) %s: %s %.2f\n",
+            printf(
+                "(%s) %s: %s %.2f\n",
                 $item->itemId,
                 $item->title,
                 $item->sellingStatus->currentPrice->currencyId,
@@ -166,4 +170,3 @@ for ($pageNum = 2; $pageNum <= $limit; $pageNum++ ) {
         }
     }
 }
-

@@ -23,9 +23,9 @@ require __DIR__.'/../vendor/autoload.php';
 /**
  * Include the configuration values.
  *
- * Ensure that you have edited the configuration.php file 
+ * Ensure that you have edited the configuration.php file
  * to include your application keys.
- * 
+ *
  * For more information about getting your application keys, see:
  * http://devbay.net/sdk/guides/application-keys/
  */
@@ -71,7 +71,7 @@ $request->paginationInput->entriesPerPage = 10;
 /**
  * Paginate through 3 pages worth of results. (Does assume there are enough results for 3 pages!)
  */
-for ($pageNum = 1; $pageNum <= 3; $pageNum++ ) {
+for ($pageNum = 1; $pageNum <= 3; $pageNum++) {
     $request->paginationInput->pageNumber = $pageNum;
 
     /**
@@ -98,7 +98,8 @@ for ($pageNum = 1; $pageNum <= 3; $pageNum++ ) {
         }
     } else {
         foreach ($response->searchResult->item as $item) {
-            printf("(%s) %s: %s %.2f\n",
+            printf(
+                "(%s) %s: %s %.2f\n",
                 $item->itemId,
                 $item->title,
                 $item->sellingStatus->currentPrice->currencyId,
@@ -107,4 +108,3 @@ for ($pageNum = 1; $pageNum <= 3; $pageNum++ ) {
         }
     }
 }
-

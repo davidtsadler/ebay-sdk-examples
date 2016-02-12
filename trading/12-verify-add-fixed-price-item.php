@@ -249,7 +249,8 @@ function buildItem()
 /**
  * Sends the passed item to eBay for verification.
  */
-function verifyItem($item) {
+function verifyItem($item)
+{
     global $service, $config;
 
     $request = new Types\VerifyAddFixedPriceItemRequestType();
@@ -263,7 +264,8 @@ function verifyItem($item) {
 
     if (isset($response->Errors)) {
         foreach ($response->Errors as $error) {
-            printf("%s: %s\n%s\n\n",
+            printf(
+                "%s: %s\n%s\n\n",
                 $error->SeverityCode === Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
                 $error->ShortMessage,
                 $error->LongMessage
@@ -275,8 +277,7 @@ function verifyItem($item) {
 
     if ($verified) {
         print("This item was verified.\n");
-    }
-    else {
+    } else {
         print("This item was not verified.\n");
     }
 
@@ -286,7 +287,8 @@ function verifyItem($item) {
 /**
  * Lists the passed item on eBay.
  */
-function addItem($item) {
+function addItem($item)
+{
     global $service, $config;
 
     $request = new Types\AddFixedPriceItemRequestType();
@@ -300,7 +302,8 @@ function addItem($item) {
 
     if (isset($response->Errors)) {
         foreach ($response->Errors as $error) {
-            printf("%s: %s\n%s\n\n",
+            printf(
+                "%s: %s\n%s\n\n",
                 $error->SeverityCode === Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
                 $error->ShortMessage,
                 $error->LongMessage
@@ -309,9 +312,9 @@ function addItem($item) {
     }
 
     if ($response->Ack !== 'Failure') {
-        printf("The item was listed to the eBay Sandbox with the Item number %s\n",
+        printf(
+            "The item was listed to the eBay Sandbox with the Item number %s\n",
             $response->ItemID
         );
     }
 }
-

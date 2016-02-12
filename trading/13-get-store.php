@@ -85,7 +85,8 @@ $response = $service->getStore($request);
  */
 if (isset($response->Errors)) {
     foreach ($response->Errors as $error) {
-        printf("%s: %s\n%s\n\n",
+        printf(
+            "%s: %s\n%s\n\n",
             $error->SeverityCode === Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
             $error->ShortMessage,
             $error->LongMessage
@@ -96,7 +97,8 @@ if (isset($response->Errors)) {
 if ($response->Ack !== 'Failure') {
     $store = $response->Store;
 
-    printf("Name: %s\nDescription: %s\nURL: %s\n\n",
+    printf(
+        "Name: %s\nDescription: %s\nURL: %s\n\n",
         $store->Name,
         $store->Description,
         $store->URL
@@ -112,13 +114,14 @@ if ($response->Ack !== 'Failure') {
  */
 function printCategory($category, $level)
 {
-    printf("%s%s : (%s)\n",
+    printf(
+        "%s%s : (%s)\n",
         str_pad('', $level * 4),
         $category->Name,
-        $category->CategoryID);
+        $category->CategoryID
+    );
 
     foreach ($category->ChildCategory as $category) {
         printCategory($category, $level + 1);
     }
 }
-

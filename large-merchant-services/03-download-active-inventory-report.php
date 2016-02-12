@@ -97,7 +97,8 @@ print("Done\n");
 
 if (isset($startDownloadJobResponse->errorMessage)) {
     foreach ($startDownloadJobResponse->errorMessage->error as $error) {
-        printf("%s: %s\n\n",
+        printf(
+            "%s: %s\n\n",
             $error->severity === BulkDataExchange\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
             $error->message
         );
@@ -105,7 +106,8 @@ if (isset($startDownloadJobResponse->errorMessage)) {
 }
 
 if ($startDownloadJobResponse->ack !== 'Failure') {
-    printf("JobId [%s]\n",
+    printf(
+        "JobId [%s]\n",
         $startDownloadJobResponse->jobId
     );
 
@@ -119,12 +121,13 @@ if ($startDownloadJobResponse->ack !== 'Failure') {
     $getJobStatusRequest->jobId = $startDownloadJobResponse->jobId;
 
     $done = false;
-    while(!$done) {
+    while (!$done) {
         $getJobStatusResponse = $exchangeService->getJobStatus($getJobStatusRequest);
 
         if (isset($getJobStatusResponse->errorMessage)) {
             foreach ($getJobStatusResponse->errorMessage->error as $error) {
-                printf("%s: %s\n\n",
+                printf(
+                    "%s: %s\n\n",
                     $error->severity === BulkDataExchange\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
                     $error->message
                 );
@@ -134,8 +137,7 @@ if ($startDownloadJobResponse->ack !== 'Failure') {
         if ($getJobStatusResponse->ack !== 'Failure') {
             printf("Status is %s\n", $getJobStatusResponse->jobProfile[0]->jobStatus);
 
-            switch($getJobStatusResponse->jobProfile[0]->jobStatus)
-            {
+            switch ($getJobStatusResponse->jobProfile[0]->jobStatus) {
                 case BulkDataExchange\Enums\JobStatus::C_COMPLETED:
                     $downloadFileReferenceId = $getJobStatusResponse->jobProfile[0]->fileReferenceId;
                     $done = true;
@@ -169,7 +171,8 @@ if ($startDownloadJobResponse->ack !== 'Failure') {
 
         if (isset($downloadFileResponse->errorMessage)) {
             foreach ($downloadFileResponse->errorMessage->error as $error) {
-                printf("%s: %s\n\n",
+                printf(
+                    "%s: %s\n\n",
                     $error->severity === FileTransfer\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
                     $error->message
                 );
@@ -193,7 +196,8 @@ if ($startDownloadJobResponse->ack !== 'Failure') {
                         $activeInventoryReport = $merchantDataService->activeInventoryReport($xml);
                         if (isset($activeInventoryReport->Errors)) {
                             foreach ($activeInventoryReport->Errors as $error) {
-                                printf("%s: %s\n%s\n\n",
+                                printf(
+                                    "%s: %s\n%s\n\n",
                                     $error->SeverityCode === MerchantData\Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
                                     $error->ShortMessage,
                                     $error->LongMessage
@@ -215,4 +219,3 @@ if ($startDownloadJobResponse->ack !== 'Failure') {
         }
     }
 }
-

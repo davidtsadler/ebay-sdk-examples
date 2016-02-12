@@ -74,7 +74,8 @@ $response = $service->getJobs($request);
  */
 if (isset($response->errorMessage)) {
     foreach ($response->errorMessage->error as $error) {
-        printf("%s: %s\n\n",
+        printf(
+            "%s: %s\n\n",
             $error->severity === BulkDataExchange\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
             $error->message
         );
@@ -86,9 +87,10 @@ if ($response->ack !== 'Failure') {
      * Just display the first 3 jobs from the response.
      */
     $upTo = min(count($response->jobProfile), 3);
-    for($x = 0; $x < $upTo; $x++) {
+    for ($x = 0; $x < $upTo; $x++) {
         $job = $response->jobProfile[$x];
-        printf("ID: %s\nType: %s\nStatus: %s\nInput File Reference ID: %s\nFile Reference ID: %s\nPercent Complete: %s\nCreated: %s\nCompleted: %s\n\n",
+        printf(
+            "ID: %s\nType: %s\nStatus: %s\nInput File Reference ID: %s\nFile Reference ID: %s\nPercent Complete: %s\nCreated: %s\nCompleted: %s\n\n",
             $job->jobId,
             $job->jobType,
             $job->jobStatus,
@@ -100,4 +102,3 @@ if ($response->ack !== 'Failure') {
         );
     }
 }
-

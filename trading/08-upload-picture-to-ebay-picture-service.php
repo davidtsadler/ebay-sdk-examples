@@ -95,7 +95,8 @@ $response = $service->uploadSiteHostedPictures($request);
  */
 if (isset($response->Errors)) {
     foreach ($response->Errors as $error) {
-        printf("%s: %s\n%s\n\n",
+        printf(
+            "%s: %s\n%s\n\n",
             $error->SeverityCode === Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
             $error->ShortMessage,
             $error->LongMessage
@@ -104,9 +105,9 @@ if (isset($response->Errors)) {
 }
 
 if ($response->Ack !== 'Failure') {
-    printf("The picture [%s] can be found at %s\n",
+    printf(
+        "The picture [%s] can be found at %s\n",
         $response->SiteHostedPictureDetails->PictureName,
         $response->SiteHostedPictureDetails->FullURL
     );
 }
-

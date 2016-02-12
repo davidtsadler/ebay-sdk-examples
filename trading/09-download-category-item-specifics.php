@@ -101,7 +101,8 @@ $response = $service->getCategorySpecifics($request);
  */
 if (isset($response->Errors)) {
     foreach ($response->Errors as $error) {
-        printf("%s: %s\n%s\n\n",
+        printf(
+            "%s: %s\n%s\n\n",
             $error->SeverityCode === Trading\Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
             $error->ShortMessage,
             $error->LongMessage
@@ -116,7 +117,8 @@ if ($response->Ack !== 'Failure') {
     $fileReferenceId = $response->FileReferenceID;
     $taskReferenceId = $response->TaskReferenceID;
 
-    printf("FileReferenceID [%s] TaskReferenceID [%s]\n",
+    printf(
+        "FileReferenceID [%s] TaskReferenceID [%s]\n",
         $fileReferenceId,
         $taskReferenceId
     );
@@ -134,7 +136,8 @@ if ($response->Ack !== 'Failure') {
 
     if (isset($response->errorMessage)) {
         foreach ($response->errorMessage->error as $error) {
-            printf("%s: %s\n\n",
+            printf(
+                "%s: %s\n\n",
                 $error->severity === FileTransfer\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
                 $error->message
             );
@@ -166,4 +169,3 @@ if ($response->Ack !== 'Failure') {
         }
     }
 }
-

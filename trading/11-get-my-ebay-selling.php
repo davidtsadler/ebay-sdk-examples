@@ -100,7 +100,8 @@ do {
 
     if (isset($response->Errors)) {
         foreach ($response->Errors as $error) {
-            printf("%s: %s\n%s\n\n",
+            printf(
+                "%s: %s\n%s\n\n",
                 $error->SeverityCode === Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
                 $error->ShortMessage,
                 $error->LongMessage
@@ -110,7 +111,8 @@ do {
 
     if ($response->Ack !== 'Failure' && isset($response->ActiveList)) {
         foreach ($response->ActiveList->ItemArray->Item as $item) {
-            printf("(%s) %s: %s %.2f\n",
+            printf(
+                "(%s) %s: %s %.2f\n",
                 $item->ItemID,
                 $item->Title,
                 $item->SellingStatus->CurrentPrice->currencyID,
@@ -121,5 +123,4 @@ do {
 
     $pageNum += 1;
 
-} while(isset($response->ActiveList) && $pageNum <= $response->ActiveList->PaginationResult->TotalNumberOfPages);
-
+} while (isset($response->ActiveList) && $pageNum <= $response->ActiveList->PaginationResult->TotalNumberOfPages);

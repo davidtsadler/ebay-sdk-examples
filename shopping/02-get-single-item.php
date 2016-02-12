@@ -82,7 +82,8 @@ $response = $service->getSingleItem($request);
  */
 if (isset($response->Errors)) {
     foreach ($response->Errors as $error) {
-        printf("%s: %s\n%s\n\n",
+        printf(
+            "%s: %s\n%s\n\n",
             $error->SeverityCode === Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
             $error->ShortMessage,
             $error->LongMessage
@@ -95,7 +96,8 @@ if ($response->Ack !== 'Failure') {
 
     print("$item->Title\n");
 
-    printf("Quantity sold %s, quantiy available %s\n",
+    printf(
+        "Quantity sold %s, quantiy available %s\n",
         $item->QuantitySold,
         $item->Quantity - $item->QuantitySold
     );
@@ -103,8 +105,9 @@ if ($response->Ack !== 'Failure') {
     if (isset($item->ItemSpecifics)) {
         print("\nThis item has the following item specifics:\n\n");
 
-        foreach($item->ItemSpecifics->NameValueList as $nameValues) {
-            printf("%s: %s\n",
+        foreach ($item->ItemSpecifics->NameValueList as $nameValues) {
+            printf(
+                "%s: %s\n",
                 $nameValues->Name,
                 implode(', ', iterator_to_array($nameValues->Value))
             );
@@ -114,20 +117,23 @@ if ($response->Ack !== 'Failure') {
     if (isset($item->Variations)) {
         print("\nThis item has the following variations:\n");
 
-        foreach($item->Variations->Variation as $variation) {
-            printf("\nSKU: %s\nStart Price: %s\n",
+        foreach ($item->Variations->Variation as $variation) {
+            printf(
+                "\nSKU: %s\nStart Price: %s\n",
                 $variation->SKU,
                 $variation->StartPrice->value
             );
 
-            printf("Quantity sold %s, quantiy available %s\n",
+            printf(
+                "Quantity sold %s, quantiy available %s\n",
                 $variation->SellingStatus->QuantitySold,
                 $variation->Quantity - $variation->SellingStatus->QuantitySold
             );
 
-            foreach($variation->VariationSpecifics as $specific) {
-                foreach($specific->NameValueList as $nameValues) {
-                    printf("%s: %s\n",
+            foreach ($variation->VariationSpecifics as $specific) {
+                foreach ($specific->NameValueList as $nameValues) {
+                    printf(
+                        "%s: %s\n",
                         $nameValues->Name,
                         implode(', ', iterator_to_array($nameValues->Value))
                     );
@@ -143,8 +149,9 @@ if ($response->Ack !== 'Failure') {
         $limit = min($item->ItemCompatibilityCount, 3);
         for ($x = 0; $x < $limit; $x++) {
             $compatibility = $item->ItemCompatibilityList->Compatibility[$x];
-            foreach($compatibility->NameValueList as $nameValues) {
-                printf("%s: %s\n",
+            foreach ($compatibility->NameValueList as $nameValues) {
+                printf(
+                    "%s: %s\n",
                     $nameValues->Name,
                     implode(', ', iterator_to_array($nameValues->Value))
                 );
@@ -153,4 +160,3 @@ if ($response->Ack !== 'Failure') {
         }
     }
 }
-

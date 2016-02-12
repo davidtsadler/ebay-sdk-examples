@@ -107,7 +107,8 @@ if ($response->Ack !== 'Success') {
      * For the US site this will output approximately 18,000 categories.
      */
     foreach ($response->CategoryArray->Category as $category) {
-        printf("Level %s : %s (%s) : Parent ID %s\n",
+        printf(
+            "Level %s : %s (%s) : Parent ID %s\n",
             $category->CategoryLevel,
             $category->CategoryName,
             $category->CategoryID,
@@ -115,4 +116,3 @@ if ($response->Ack !== 'Success') {
         );
     }
 }
-

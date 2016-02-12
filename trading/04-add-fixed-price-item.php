@@ -270,7 +270,8 @@ $response = $service->addFixedPriceItem($request);
  */
 if (isset($response->Errors)) {
     foreach ($response->Errors as $error) {
-        printf("%s: %s\n%s\n\n",
+        printf(
+            "%s: %s\n%s\n\n",
             $error->SeverityCode === Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
             $error->ShortMessage,
             $error->LongMessage
@@ -279,8 +280,8 @@ if (isset($response->Errors)) {
 }
 
 if ($response->Ack !== 'Failure') {
-    printf("The item was listed to the eBay Sandbox with the Item number %s\n",
+    printf(
+        "The item was listed to the eBay Sandbox with the Item number %s\n",
         $response->ItemID
     );
 }
-

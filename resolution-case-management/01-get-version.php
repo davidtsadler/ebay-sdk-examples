@@ -73,7 +73,8 @@ $response = $service->getVersion($request);
  */
 if (isset($response->errorMessage)) {
     foreach ($response->errorMessage->error as $error) {
-        printf("%s: %s\n\n",
+        printf(
+            "%s: %s\n\n",
             $error->severity=== Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
             $error->message
         );
@@ -83,4 +84,3 @@ if (isset($response->errorMessage)) {
 if ($response->ack !== 'Failure') {
     printf("The current version is: %s\n", $response->version);
 }
-

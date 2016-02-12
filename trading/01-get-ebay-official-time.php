@@ -89,4 +89,3 @@ if ($response->Ack !== 'Success') {
 } else {
     printf("The official eBay time is: %s\n", $response->Timestamp->format('H:i (\G\M\T) \o\n l jS F Y'));
 }
-

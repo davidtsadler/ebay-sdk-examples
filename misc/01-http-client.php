@@ -45,7 +45,7 @@ use \DTS\eBaySDK\Trading\Types;
 $handler = function (Psr\Http\Message\RequestInterface $request) {
     $curlHeaders = [];
     foreach ($request->getHeaders() as $key => $value) {
-        $curlHeaders[] =  "$key:".implode(',', $value); 
+        $curlHeaders[] =  "$key:".implode(',', $value);
     }
 
     /**
@@ -74,7 +74,7 @@ $handler = function (Psr\Http\Message\RequestInterface $request) {
 };
 
 /**
- * Create the service object. 
+ * Create the service object.
  *
  * For more information about creating a service object, see:
  * http://devbay.net/sdk/guides/getting-started/#service-object
@@ -125,4 +125,3 @@ if ($response->Ack !== 'Success') {
 } else {
     printf("The official eBay time is: %s\n", $response->Timestamp->format('H:i (\G\M\T) \o\n l jS F Y'));
 }
-
