@@ -65,7 +65,7 @@ $request->keywords = 'Harry Potter';
  * DVDs & Movies > DVDs & Blue-ray (617)
  * Books > Fiction & Literature (171228)
  */
-$request->categoryId = array('617', '171228');
+$request->categoryId = ['617', '171228'];
 
 /**
  * Filter results to only include auction items or auctions with buy it now.
@@ -81,15 +81,15 @@ $request->itemFilter[] = $itemFilter;
  *
  * Notice that we can take advantage of the fact that the SDK allows object properties to be assigned via the class constructor.
  */
-$request->itemFilter[] = new Types\ItemFilter(array(
+$request->itemFilter[] = new Types\ItemFilter([
     'name' => 'MinPrice',
-    'value' => array('1.00')
-));
+    'value' => ['1.00']
+]);
 
-$request->itemFilter[] = new Types\ItemFilter(array(
+$request->itemFilter[] = new Types\ItemFilter([
     'name' => 'MaxPrice',
-    'value' => array('10.00')
-));
+    'value' => ['10.00']
+]);
 
 /**
  * Sort the results by current price.

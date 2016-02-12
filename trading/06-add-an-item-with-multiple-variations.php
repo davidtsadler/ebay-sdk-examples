@@ -121,12 +121,12 @@ $variationSpecificsSet = new Types\NameValueListArrayType();
 
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = 'Color';
-$nameValue->Value = array('Red', 'White', 'Blue');
+$nameValue->Value = ['Red', 'White', 'Blue'];
 $variationSpecificsSet->NameValueList[] = $nameValue;
 
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = "Size (Men's)";
-$nameValue->Value = array('S', 'M', 'L');
+$nameValue->Value = ['S', 'M', 'L'];
 $variationSpecificsSet->NameValueList[] = $nameValue;
 
 $item->Variations->VariationSpecificsSet = $variationSpecificsSet;
@@ -142,15 +142,15 @@ $item->Variations->VariationSpecificsSet = $variationSpecificsSet;
 $variation = new Types\VariationType();
 $variation->SKU = 'TS-R-S';
 $variation->Quantity = 10;
-$variation->StartPrice = new Types\AmountType(array('value' => 9.99));
+$variation->StartPrice = new Types\AmountType(['value' => 9.99]);
 $variationSpecifics = new Types\NameValueListArrayType();
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = 'Color';
-$nameValue->Value = array('Red');
+$nameValue->Value = ['Red'];
 $variationSpecifics->NameValueList[] = $nameValue;
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = "Size (Men's)";
-$nameValue->Value = array('S');
+$nameValue->Value = ['S'];
 $variationSpecifics->NameValueList[] = $nameValue;
 $variation->VariationSpecifics[] = $variationSpecifics;
 $item->Variations->Variation[] = $variation;
@@ -166,15 +166,15 @@ $item->Variations->Variation[] = $variation;
 $variation = new Types\VariationType();
 $variation->SKU = 'TS-R-M';
 $variation->Quantity = 10;
-$variation->StartPrice = new Types\AmountType(array('value' => 9.99));
+$variation->StartPrice = new Types\AmountType(['value' => 9.99]);
 $variationSpecifics = new Types\NameValueListArrayType();
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = 'Color';
-$nameValue->Value = array('Red');
+$nameValue->Value = ['Red'];
 $variationSpecifics->NameValueList[] = $nameValue;
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = "Size (Men's)";
-$nameValue->Value = array('M');
+$nameValue->Value = ['M'];
 $variationSpecifics->NameValueList[] = $nameValue;
 $variation->VariationSpecifics[] = $variationSpecifics;
 $item->Variations->Variation[] = $variation;
@@ -190,15 +190,15 @@ $item->Variations->Variation[] = $variation;
 $variation = new Types\VariationType();
 $variation->SKU = 'TS-R-L';
 $variation->Quantity = 10;
-$variation->StartPrice = new Types\AmountType(array('value' => 9.99));
+$variation->StartPrice = new Types\AmountType(['value' => 9.99]);
 $variationSpecifics = new Types\NameValueListArrayType();
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = 'Color';
-$nameValue->Value = array('Red');
+$nameValue->Value = ['Red'];
 $variationSpecifics->NameValueList[] = $nameValue;
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = "Size (Men's)";
-$nameValue->Value = array('L');
+$nameValue->Value = ['L'];
 $variationSpecifics->NameValueList[] = $nameValue;
 $variation->VariationSpecifics[] = $variationSpecifics;
 $item->Variations->Variation[] = $variation;
@@ -214,17 +214,17 @@ $item->Variations->Variation[] = $variation;
  * The SDK allows properties to be specified when constructing new objects.
  * By taking advantage of this feature we can add a variation as follows.
  */
-$item->Variations->Variation[] = new Types\VariationType(array(
+$item->Variations->Variation[] = new Types\VariationType([
     'SKU' => 'TS-W-S',
     'Quantity' => 5,
-    'StartPrice' => new Types\AmountType(array('value' => 10.99)),
-    'VariationSpecifics' => array(new Types\NameValueListArrayType(array(
-        'NameValueList' => array(
-            new Types\NameValueListType(array('Name' => 'Color', 'Value' => array('White'))),
-            new Types\NameValueListType(array('Name' => "Size (Men's)", 'Value' => array('S')))
-        )
-    )))
-));
+    'StartPrice' => new Types\AmountType(['value' => 10.99]),
+    'VariationSpecifics' => [new Types\NameValueListArrayType([
+        'NameValueList' => [
+            new Types\NameValueListType(['Name' => 'Color', 'Value' => ['White']]),
+            new Types\NameValueListType(['Name' => "Size (Men's)", 'Value' => ['S']])
+        ]
+    ])]
+]);
 
 /**
  * Variation
@@ -234,17 +234,17 @@ $item->Variations->Variation[] = new Types\VariationType(array(
  * Quantity     - 5
  * Price        - 10.99
  */
-$item->Variations->Variation[] = new Types\VariationType(array(
+$item->Variations->Variation[] = new Types\VariationType([
     'SKU' => 'TS-W-M',
     'Quantity' => 5,
-    'StartPrice' => new Types\AmountType(array('value' => 10.99)),
-    'VariationSpecifics' => array(new Types\NameValueListArrayType(array(
-        'NameValueList' => array(
-            new Types\NameValueListType(array('Name' => 'Color', 'Value' => array('White'))),
-            new Types\NameValueListType(array('Name' => "Size (Men's)", 'Value' => array('M')))
-        )
-    )))
-));
+    'StartPrice' => new Types\AmountType(['value' => 10.99]),
+    'VariationSpecifics' => [new Types\NameValueListArrayType([
+        'NameValueList' => [
+            new Types\NameValueListType(['Name' => 'Color', 'Value' => ['White']]),
+            new Types\NameValueListType(['Name' => "Size (Men's)", 'Value' => ['M']])
+        ]
+    ])]
+]);
 
 /**
  * Variation
@@ -254,17 +254,17 @@ $item->Variations->Variation[] = new Types\VariationType(array(
  * Quantity     - 10
  * Price        - 9.99
  */
-$item->Variations->Variation[] = new Types\VariationType(array(
+$item->Variations->Variation[] = new Types\VariationType([
     'SKU' => 'TS-B-L',
     'Quantity' => 10,
-    'StartPrice' => new Types\AmountType(array('value' => 9.99)),
-    'VariationSpecifics' => array(new Types\NameValueListArrayType(array(
-        'NameValueList' => array(
-            new Types\NameValueListType(array('Name' => 'Color', 'Value' => array('Blue'))),
-            new Types\NameValueListType(array('Name' => "Size (Men's)", 'Value' => array('L')))
-        )
-    )))
-));
+    'StartPrice' => new Types\AmountType(['value' => 9.99]),
+    'VariationSpecifics' => [new Types\NameValueListArrayType([
+        'NameValueList' => [
+            new Types\NameValueListType(['Name' => 'Color', 'Value' => ['Blue']]),
+            new Types\NameValueListType(['Name' => "Size (Men's)", 'Value' => ['L']])
+        ]
+    ])]
+]);
 
 $pictures = new Types\PicturesType();
 $pictures->VariationSpecificName = 'Color';
@@ -321,10 +321,10 @@ $item->ItemSpecifics->NameValueList[] = $specific;
 /**
  * This shows an alternative way of adding a specific.
  */
-$item->ItemSpecifics->NameValueList[] = new Types\NameValueListType(array(
+$item->ItemSpecifics->NameValueList[] = new Types\NameValueListType([
     'Name' => 'Style',
-    'Value' => array('Basic Tee')
-));
+    'Value' => ['Basic Tee']
+]);
 
 $specific = new Types\NameValueListType();
 $specific->Name = 'Size Type';

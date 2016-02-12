@@ -125,14 +125,14 @@ if ($createUploadJobResponse->ack !== 'Failure') {
     $setShipmentTrackingInfo->IsShipped = true;
     $setShipmentTrackingInfo->Shipment = new MerchantData\Types\ShipmentType();
     $setShipmentTrackingInfo->Shipment->ShipmentLineItem = new MerchantData\Types\ShipmentLineItemType();
-    $setShipmentTrackingInfo->Shipment->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType(array(
+    $setShipmentTrackingInfo->Shipment->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType([
         'ItemID' => '123456789x',
         'Quantity' => 1
-    ));
-    $setShipmentTrackingInfo->Shipment->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType(array(
+    ]);
+    $setShipmentTrackingInfo->Shipment->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType([
         'ItemID' => '987654321x',
         'Quantity' => 2
-    ));
+    ]);
     $payload->SetShipmentTrackingInfoRequest[] = $setShipmentTrackingInfo;
 
     $setShipmentTrackingInfo = new MerchantData\Types\SetShipmentTrackingInfoRequestType();
@@ -141,14 +141,14 @@ if ($createUploadJobResponse->ack !== 'Failure') {
     $setShipmentTrackingInfo->IsShipped = true;
     $setShipmentTrackingInfo->Shipment = new MerchantData\Types\ShipmentType();
     $setShipmentTrackingInfo->Shipment->ShipmentLineItem = new MerchantData\Types\ShipmentLineItemType();
-    $setShipmentTrackingInfo->Shipment->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType(array(
+    $setShipmentTrackingInfo->Shipment->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType([
         'ItemID' => '222222222x',
         'Quantity' => 1
-    ));
-    $setShipmentTrackingInfo->Shipment->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType(array(
+    ]);
+    $setShipmentTrackingInfo->Shipment->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType([
         'ItemID' => '333333333x',
         'Quantity' => 2
-    ));
+    ]);
     $payload->SetShipmentTrackingInfoRequest[] = $setShipmentTrackingInfo;
 
     /**

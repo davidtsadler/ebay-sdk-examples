@@ -79,10 +79,10 @@ $request->itemFilter[] = $itemFilter;
  *
  * Notice that we can take advantage of the fact that the SDK allows object properties to be assigned via the class constructor.
  */
-$request->itemFilter[] = new Types\ItemFilter(array(
+$request->itemFilter[] = new Types\ItemFilter([
     'name' => 'MaxPrice',
-    'value' => array('50.00')
-));
+    'value' => ['50.00']
+]);
 
 /**
  * Sort the results by fixed price.

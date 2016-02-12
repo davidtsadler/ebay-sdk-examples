@@ -285,12 +285,12 @@ function buildPayload()
      * Array of listings to revise.
      * Replace with your own values.
      */
-    $listings = array(
-        array('id' => '123456789012', 'sku' => 'ABC', 'quantity' => 10, 'startPrice' => 99.99),
-        array('id' => '219876543210', 'startPrice'=> 9.99),
-        array('id' => '111222333444', 'quantity'=> 9),
-        array('sku' => 'CBA', 'quantity'=> 100)
-    );
+    $listings = [
+        ['id' => '123456789012', 'sku' => 'ABC', 'quantity' => 10, 'startPrice' => 99.99],
+        ['id' => '219876543210', 'startPrice'=> 9.99],
+        ['id' => '111222333444', 'quantity'=> 9],
+        ['sku' => 'CBA', 'quantity'=> 100]
+    ];
 
     $chunks = array_chunk($listings, 4);
     foreach ($chunks as $index => $items) {
@@ -320,7 +320,7 @@ function buildReviseInventoryStatusRequest($items)
             $inventoryStatus->Quantity = $item['quantity'];
         }
         if (array_key_exists('startPrice', $item)) {
-            $inventoryStatus->StartPrice = new MerchantData\Types\AmountType(array('value' => $item['startPrice']));
+            $inventoryStatus->StartPrice = new MerchantData\Types\AmountType(['value' => $item['startPrice']]);
         }
         $request->InventoryStatus[] = $inventoryStatus;
     }

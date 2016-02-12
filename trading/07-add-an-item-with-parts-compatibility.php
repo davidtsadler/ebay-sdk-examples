@@ -128,17 +128,17 @@ $compatibility->CompatibilityNotes = 'An example compatibility';
 
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = 'Year';
-$nameValue->Value = array('2015');
+$nameValue->Value = ['2015'];
 $compatibility->NameValueList[] = $nameValue;
 
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = 'Make';
-$nameValue->Value = array('BMW');
+$nameValue->Value = ['BMW'];
 $compatibility->NameValueList[] = $nameValue;
 
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = 'Model';
-$nameValue->Value = array('320i');
+$nameValue->Value = ['320i'];
 $compatibility->NameValueList[] = $nameValue;
 
 /**
@@ -159,27 +159,27 @@ $compatibility->CompatibilityNotes = 'An example compatibility';
 
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = 'Year';
-$nameValue->Value = array('2011');
+$nameValue->Value = ['2011'];
 $compatibility->NameValueList[] = $nameValue;
 
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = 'Make';
-$nameValue->Value = array('Nissan');
+$nameValue->Value = ['Nissan'];
 $compatibility->NameValueList[] = $nameValue;
 
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = 'Model';
-$nameValue->Value = array('Leaf');
+$nameValue->Value = ['Leaf'];
 $compatibility->NameValueList[] = $nameValue;
 
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = 'Trim';
-$nameValue->Value = array('SV Hatchback 4-Door');
+$nameValue->Value = ['SV Hatchback 4-Door'];
 $compatibility->NameValueList[] = $nameValue;
 
 $nameValue = new Types\NameValueListType();
 $nameValue->Name = 'Engine';
-$nameValue->Value = array('ELECTRIC');
+$nameValue->Value = ['ELECTRIC'];
 $compatibility->NameValueList[] = $nameValue;
 
 $item->ItemCompatibilityList->Compatibility[] = $compatibility;
@@ -194,16 +194,16 @@ $item->ItemCompatibilityList->Compatibility[] = $compatibility;
  * The SDK allows properties to be specified when constructing new objects.
  * By taking advantage of this feature we can add a compatibility as follows.
  */
-$item->ItemCompatibilityList->Compatibility[] = new Types\ItemCompatibilityType(array(
+$item->ItemCompatibilityList->Compatibility[] = new Types\ItemCompatibilityType([
     'CompatibilityNotes' => 'An example compatibility',
-    'NameValueList' => array(
-        new Types\NameValueListType(array('Name' => 'Year', 'Value' => array('2015'))),
-        new Types\NameValueListType(array('Name' => 'Make', 'Value' => array('Land Rover'))),
-        new Types\NameValueListType(array('Name' => 'Model', 'Value' => array('Range Rover Evoque'))),
-        new Types\NameValueListType(array('Name' => 'Trim', 'Value' => array('Autobiography Dynamic'))),
-        new Types\NameValueListType(array('Name' => 'Engine', 'Value' => array('2.0L 1999CC 122Cu. In. l4 GAS Turbocharged')))
-    )
-));
+    'NameValueList' => [
+        new Types\NameValueListType(['Name' => 'Year', 'Value' => ['2015']]),
+        new Types\NameValueListType(['Name' => 'Make', 'Value' => ['Land Rover']]),
+        new Types\NameValueListType(['Name' => 'Model', 'Value' => ['Range Rover Evoque']]),
+        new Types\NameValueListType(['Name' => 'Trim', 'Value' => ['Autobiography Dynamic']]),
+        new Types\NameValueListType(['Name' => 'Engine', 'Value' => ['2.0L 1999CC 122Cu. In. l4 GAS Turbocharged']])
+    ]
+]);
 
 /**
  * Year   - 2014
@@ -212,14 +212,14 @@ $item->ItemCompatibilityList->Compatibility[] = new Types\ItemCompatibilityType(
  * Trim   - All Trims
  * Engine - All Engines
  */
-$item->ItemCompatibilityList->Compatibility[] = new Types\ItemCompatibilityType(array(
+$item->ItemCompatibilityList->Compatibility[] = new Types\ItemCompatibilityType([
     'CompatibilityNotes' => 'An example compatibility',
-    'NameValueList' => array(
-        new Types\NameValueListType(array('Name' => 'Year', 'Value' => array('2014'))),
-        new Types\NameValueListType(array('Name' => 'Make', 'Value' => array('Ford'))),
-        new Types\NameValueListType(array('Name' => 'Model', 'Value' => array('Fiesta')))
-    )
-));
+    'NameValueList' => [
+        new Types\NameValueListType(['Name' => 'Year', 'Value' => ['2014']]),
+        new Types\NameValueListType(['Name' => 'Make', 'Value' => ['Ford']]),
+        new Types\NameValueListType(['Name' => 'Model', 'Value' => ['Fiesta']])
+    ]
+]);
 
 /**
  * Provide enough information so that the item is listed.
@@ -228,7 +228,7 @@ $item->ItemCompatibilityList->Compatibility[] = new Types\ItemCompatibilityType(
 $item->ListingType = Enums\ListingTypeCodeType::C_FIXED_PRICE_ITEM;
 $item->Quantity = 99;
 $item->ListingDuration = Enums\ListingDurationCodeType::C_GTC;
-$item->StartPrice = new Types\AmountType(array('value' => 19.99));
+$item->StartPrice = new Types\AmountType(['value' => 19.99]);
 $item->Country = 'US';
 $item->Location = 'Beverly Hills';
 $item->Currency = 'USD';

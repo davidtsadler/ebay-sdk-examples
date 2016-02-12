@@ -276,21 +276,21 @@ function buildPayload()
     $payload->Header->SiteID = Constants\SiteIds::US;
     $payload->Header->Version = '951';
 
-    $payload->AddFixedPriceItemRequest[] = buildAddFixedPriceItemRequest(array(
+    $payload->AddFixedPriceItemRequest[] = buildAddFixedPriceItemRequest([
         'title' => 'Example one',
         'description' => 'Example one',
         'sku' => 'abc-001',
         'price' => 9.99,
         'quantity' => 1
-    ));
+    ]);
 
-    $payload->AddFixedPriceItemRequest[] = buildAddFixedPriceItemRequest(array(
+    $payload->AddFixedPriceItemRequest[] = buildAddFixedPriceItemRequest([
         'title' => 'Example two',
         'description' => 'Example two',
         'sku' => 'abc-002',
         'price' => 10.99,
         'quantity' => 9
-    ));
+    ]);
 
     return $payload;
 }
@@ -306,7 +306,7 @@ function buildAddFixedPriceItemRequest($details)
     $item->ListingType = MerchantData\Enums\ListingTypeCodeType::C_FIXED_PRICE_ITEM;
     $item->Quantity = $details['quantity'];
     $item->ListingDuration = 'GTC';
-    $item->StartPrice = new MerchantData\Types\AmountType(array('value' => $details['price']));
+    $item->StartPrice = new MerchantData\Types\AmountType(['value' => $details['price']]);
     $item->Title = $details['title'];
     $item->Description = $details['description'];
     $item->SKU = $details['sku'];
@@ -316,13 +316,13 @@ function buildAddFixedPriceItemRequest($details)
     $item->Currency = 'USD';
     $item->PictureDetails = new MerchantData\Types\PictureDetailsType();
     $item->PictureDetails->GalleryType = MerchantData\Enums\GalleryTypeCodeType::C_GALLERY;
-    $item->PictureDetails->PictureURL = array('http://lorempixel.com/1500/1024/abstract');
+    $item->PictureDetails->PictureURL = ['http://lorempixel.com/1500/1024/abstract'];
     $item->PrimaryCategory = new MerchantData\Types\CategoryType();
     $item->PrimaryCategory->CategoryID = '29792';
     $item->ConditionID = 1000;
-    $item->PaymentMethods = array(
+    $item->PaymentMethods = [
         'PayPal'
-    );
+    ];
     $item->PayPalEmailAddress = 'example@example.com';
     $item->DispatchTimeMax = 1;
     $item->ShippingDetails = new MerchantData\Types\ShippingDetailsType();
@@ -330,7 +330,7 @@ function buildAddFixedPriceItemRequest($details)
     $shippingService = new MerchantData\Types\ShippingServiceOptionsType();
     $shippingService->ShippingServicePriority = 1;
     $shippingService->ShippingService = 'Other';
-    $shippingService->ShippingServiceCost = new MerchantData\Types\AmountType(array('value' => 2.00));
+    $shippingService->ShippingServiceCost = new MerchantData\Types\AmountType(['value' => 2.00]);
     $item->ShippingDetails->ShippingServiceOptions[] = $shippingService;
     $item->ReturnPolicy = new MerchantData\Types\ReturnPolicyType();
     $item->ReturnPolicy->ReturnsAcceptedOption = 'ReturnsAccepted';

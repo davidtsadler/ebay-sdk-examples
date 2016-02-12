@@ -103,16 +103,16 @@ $item->ListingDuration = Enums\ListingDurationCodeType::C_DAYS_7;
  * Note that we don't have to specify a currency as eBay will use the site id
  * that we provided earlier to determine that it will be United States Dollars (USD).
  */
-$item->StartPrice = new Types\AmountType(array('value' => 8.99));
+$item->StartPrice = new Types\AmountType(['value' => 8.99]);
 /**
  * State that the item will not sell if none of the bids meet the reserve price of $10.99
  */
-$item->ReservePrice = new Types\AmountType(array('value' => 10.99));
+$item->ReservePrice = new Types\AmountType(['value' => 10.99]);
 /**
  * Let buyers end the auction immediately by purchasing the item at the Buy It Now price of $15.99
  * This also shows how we can specify the currency if we wanted to.
  */
-$item->BuyItNowPrice = new Types\AmountType(array('value' => 15.99, 'currencyID' => 'USD'));
+$item->BuyItNowPrice = new Types\AmountType(['value' => 15.99, 'currencyID' => 'USD']);
 
 /**
  * Provide a title and description and other information such as the item's location.
@@ -133,7 +133,7 @@ $item->Currency = 'USD';
  */
 $item->PictureDetails = new Types\PictureDetailsType();
 $item->PictureDetails->GalleryType = Enums\GalleryTypeCodeType::C_GALLERY;
-$item->PictureDetails->PictureURL = array('http://lorempixel.com/1500/1024/abstract');
+$item->PictureDetails->PictureURL = ['http://lorempixel.com/1500/1024/abstract'];
 
 /**
  * List item in the Books > Audiobooks (29792) category.
@@ -155,10 +155,10 @@ $item->ConditionID = 1000;
  * Note that you have to provide the PayPal account that the seller will use.
  * This is because a seller may have more than one PayPal account.
  */
-$item->PaymentMethods = array(
+$item->PaymentMethods = [
     'VisaMC',
     'PayPal'
-);
+];
 $item->PayPalEmailAddress = 'example@example.com';
 $item->DispatchTimeMax = 3;
 
@@ -176,7 +176,7 @@ $item->ShippingDetails->ShippingType = Enums\ShippingTypeCodeType::C_FLAT;
 $shippingService = new Types\ShippingServiceOptionsType();
 $shippingService->ShippingServicePriority = 1;
 $shippingService->ShippingService = 'Other';
-$shippingService->ShippingServiceCost = new Types\AmountType(array('value' => 2.00));
+$shippingService->ShippingServiceCost = new Types\AmountType(['value' => 2.00]);
 $item->ShippingDetails->ShippingServiceOptions[] = $shippingService;
 
 /**
@@ -186,7 +186,7 @@ $item->ShippingDetails->ShippingServiceOptions[] = $shippingService;
 $shippingService = new Types\ShippingServiceOptionsType();
 $shippingService->ShippingServicePriority = 2;
 $shippingService->ShippingService = 'USPSParcel';
-$shippingService->ShippingServiceCost = new Types\AmountType(array('value' => 3.00));
+$shippingService->ShippingServiceCost = new Types\AmountType(['value' => 3.00]);
 $item->ShippingDetails->ShippingServiceOptions[] = $shippingService;
 
 /**
@@ -197,8 +197,8 @@ $item->ShippingDetails->ShippingServiceOptions[] = $shippingService;
 $shippingService = new Types\InternationalShippingServiceOptionsType();
 $shippingService->ShippingServicePriority = 1;
 $shippingService->ShippingService = 'USPSFirstClassMailInternational';
-$shippingService->ShippingServiceCost = new Types\AmountType(array('value' => 4.00));
-$shippingService->ShipToLocation = array('WorldWide');
+$shippingService->ShippingServiceCost = new Types\AmountType(['value' => 4.00]);
+$shippingService->ShipToLocation = ['WorldWide'];
 $item->ShippingDetails->InternationalShippingServiceOption[] = $shippingService;
 
 /**
@@ -214,14 +214,14 @@ $item->ShippingDetails->InternationalShippingServiceOption[] = $shippingService;
 $shippingService = new Types\InternationalShippingServiceOptionsType();
 $shippingService->ShippingServicePriority = 2;
 $shippingService->ShippingService = 'USPSPriorityMailInternational';
-$shippingService->ShippingServiceCost = new Types\AmountType(array('value' => 5.00));
-$shippingService->ShipToLocation = array(
+$shippingService->ShippingServiceCost = new Types\AmountType(['value' => 5.00]);
+$shippingService->ShipToLocation = [
     'Americas',
     'CA',
     'AU',
     'Europe',
     'JP'
-);
+];
 $item->ShippingDetails->InternationalShippingServiceOption[] = $shippingService;
 
 /**

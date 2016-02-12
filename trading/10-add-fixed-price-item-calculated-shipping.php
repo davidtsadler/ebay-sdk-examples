@@ -102,7 +102,7 @@ $item->ListingDuration = Enums\ListingDurationCodeType::C_GTC;
  * Note that we don't have to specify a currency as eBay will use the site id
  * that we provided earlier to determine that it will be United States Dollars (USD).
  */
-$item->StartPrice = new Types\AmountType(array('value' => 19.99));
+$item->StartPrice = new Types\AmountType(['value' => 19.99]);
 
 /**
  * Allow buyers to submit a best offer.
@@ -114,8 +114,8 @@ $item->BestOfferDetails->BestOfferEnabled = true;
  * Automatically accept best offers of $17.99 and decline offers lower than $15.99.
  */
 $item->ListingDetails = new Types\ListingDetailsType();
-$item->ListingDetails->BestOfferAutoAcceptPrice = new Types\AmountType(array('value' => 17.99));
-$item->ListingDetails->MinimumBestOfferPrice = new Types\AmountType(array('value' => 15.99));
+$item->ListingDetails->BestOfferAutoAcceptPrice = new Types\AmountType(['value' => 17.99]);
+$item->ListingDetails->MinimumBestOfferPrice = new Types\AmountType(['value' => 15.99]);
 
 /**
  * Provide a title and description and other information such as the item's location.
@@ -137,7 +137,7 @@ $item->Currency = 'USD';
  */
 $item->PictureDetails = new Types\PictureDetailsType();
 $item->PictureDetails->GalleryType = Enums\GalleryTypeCodeType::C_GALLERY;
-$item->PictureDetails->PictureURL = array('http://lorempixel.com/1500/1024/abstract');
+$item->PictureDetails->PictureURL = ['http://lorempixel.com/1500/1024/abstract'];
 
 /**
  * List item in the Books > Audiobooks (29792) category.
@@ -159,10 +159,10 @@ $item->ConditionID = 1000;
  * Note that you have to provide the PayPal account that the seller will use.
  * This is because a seller may have more than one PayPal account.
  */
-$item->PaymentMethods = array(
+$item->PaymentMethods = [
     'VisaMC',
     'PayPal'
-);
+];
 $item->PayPalEmailAddress = 'example@example.com';
 $item->DispatchTimeMax = 1;
 
@@ -179,8 +179,8 @@ $item->ShippingDetails->ShippingType = Enums\ShippingTypeCodeType::C_CALCULATED;
  * For this example the seller will charge $1.99 for domestic and $2.99 for international packaging.
  */
 $item->ShippingDetails->CalculatedShippingRate = new Types\CalculatedShippingRateType();
-$item->ShippingDetails->CalculatedShippingRate->PackagingHandlingCosts = new Types\AmountType(array('value' => 1.99));
-$item->ShippingDetails->CalculatedShippingRate->InternationalPackagingHandlingCosts = new Types\AmountType(array('value' => 2.99));
+$item->ShippingDetails->CalculatedShippingRate->PackagingHandlingCosts = new Types\AmountType(['value' => 1.99]);
+$item->ShippingDetails->CalculatedShippingRate->InternationalPackagingHandlingCosts = new Types\AmountType(['value' => 2.99]);
 $item->ShippingDetails->CalculatedShippingRate->OriginatingPostalCode = '90210';
 
 /**
@@ -216,10 +216,10 @@ $packageDetails->WeightMajor->value = 2;
  * The SDK allows properties to be specified when constructing new objects.
  * By taking advantage of this feature we add details as follows.
  */
-$packageDetails->WeightMinor = new Types\MeasureType(array(
+$packageDetails->WeightMinor = new Types\MeasureType([
     'unit' => 'oz',
     'value' => 3
-));
+]);
 
 $item->ShippingPackageDetails = $packageDetails;
 
@@ -260,7 +260,7 @@ $item->ShippingDetails->ShippingServiceOptions[] = $shippingService;
 $shippingService = new Types\InternationalShippingServiceOptionsType();
 $shippingService->ShippingServicePriority = 1;
 $shippingService->ShippingService = 'USPSPriorityMailInternationalSmallFlatRateBox';
-$shippingService->ShipToLocation = array('WorldWide');
+$shippingService->ShipToLocation = ['WorldWide'];
 $item->ShippingDetails->InternationalShippingServiceOption[] = $shippingService;
 
 /**
@@ -276,13 +276,13 @@ $item->ShippingDetails->InternationalShippingServiceOption[] = $shippingService;
 $shippingService = new Types\InternationalShippingServiceOptionsType();
 $shippingService->ShippingServicePriority = 2;
 $shippingService->ShippingService = 'USPSExpressMailInternational';
-$shippingService->ShipToLocation = array(
+$shippingService->ShipToLocation = [
     'Americas',
     'CA',
     'AU',
     'Europe',
     'JP'
-);
+];
 $item->ShippingDetails->InternationalShippingServiceOption[] = $shippingService;
 
 /**

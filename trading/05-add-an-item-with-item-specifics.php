@@ -137,10 +137,10 @@ $item->ItemSpecifics->NameValueList[] = $specific;
 /**
  * This shows an alternative way of adding a specific.
  */
-$item->ItemSpecifics->NameValueList[] = new Types\NameValueListType(array(
+$item->ItemSpecifics->NameValueList[] = new Types\NameValueListType([
     'Name' => 'Topic',
-    'Value' => array('Fantasy')
-));
+    'Value' => ['Fantasy']
+]);
 
 $specific = new Types\NameValueListType();
 $specific->Name = 'Format';
@@ -178,7 +178,7 @@ $item->ItemSpecifics->NameValueList[] = $specific;
 $item->ListingType = Enums\ListingTypeCodeType::C_FIXED_PRICE_ITEM;
 $item->Quantity = 99;
 $item->ListingDuration = Enums\ListingDurationCodeType::C_GTC;
-$item->StartPrice = new Types\AmountType(array('value' => 19.99));
+$item->StartPrice = new Types\AmountType(['value' => 19.99]);
 $item->Country = 'US';
 $item->Location = 'Beverly Hills';
 $item->Currency = 'USD';

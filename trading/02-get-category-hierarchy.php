@@ -69,18 +69,18 @@ $request->RequesterCredentials->eBayAuthToken = $config['production']['authToken
 /**
  * By specifying 'ReturnAll' we are telling the API return the full category hierarchy.
  */
-$request->DetailLevel = array('ReturnAll');
+$request->DetailLevel = ['ReturnAll'];
 
 /**
  * OutputSelector can be used to reduce the amount of data returned by the API.
  * http://developer.ebay.com/DevZone/XML/docs/Reference/ebay/GetCategories.html#Request.OutputSelector
  */
-$request->OutputSelector = array(
+$request->OutputSelector = [
     'CategoryArray.Category.CategoryID',
     'CategoryArray.Category.CategoryParentID',
     'CategoryArray.Category.CategoryLevel',
     'CategoryArray.Category.CategoryName'
-);
+];
 
 /**
  * Send the request to the GetCategories service operation.

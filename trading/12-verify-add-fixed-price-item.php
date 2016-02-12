@@ -96,7 +96,7 @@ function buildItem()
      * Note that we don't have to specify a currency as eBay will use the site id
      * that we provided earlier to determine that it will be United States Dollars (USD).
      */
-    $item->StartPrice = new Types\AmountType(array('value' => 19.99));
+    $item->StartPrice = new Types\AmountType(['value' => 19.99]);
 
     /**
      * Allow buyers to submit a best offer.
@@ -108,8 +108,8 @@ function buildItem()
      * Automatically accept best offers of $17.99 and decline offers lower than $15.99.
      */
     $item->ListingDetails = new Types\ListingDetailsType();
-    $item->ListingDetails->BestOfferAutoAcceptPrice = new Types\AmountType(array('value' => 17.99));
-    $item->ListingDetails->MinimumBestOfferPrice = new Types\AmountType(array('value' => 15.99));
+    $item->ListingDetails->BestOfferAutoAcceptPrice = new Types\AmountType(['value' => 17.99]);
+    $item->ListingDetails->MinimumBestOfferPrice = new Types\AmountType(['value' => 15.99]);
 
     /**
      * Provide a title and description and other information such as the item's location.
@@ -131,7 +131,7 @@ function buildItem()
      */
     $item->PictureDetails = new Types\PictureDetailsType();
     $item->PictureDetails->GalleryType = Enums\GalleryTypeCodeType::C_GALLERY;
-    $item->PictureDetails->PictureURL = array('http://lorempixel.com/1500/1024/abstract');
+    $item->PictureDetails->PictureURL = ['http://lorempixel.com/1500/1024/abstract'];
 
     /**
      * List item in the Books > Audiobooks (29792) category.
@@ -153,10 +153,10 @@ function buildItem()
      * Note that you have to provide the PayPal account that the seller will use.
      * This is because a seller may have more than one PayPal account.
      */
-    $item->PaymentMethods = array(
+    $item->PaymentMethods = [
         'VisaMC',
         'PayPal'
-    );
+    ];
     $item->PayPalEmailAddress = 'example@example.com';
     $item->DispatchTimeMax = 1;
 
@@ -175,8 +175,8 @@ function buildItem()
     $shippingService = new Types\ShippingServiceOptionsType();
     $shippingService->ShippingServicePriority = 1;
     $shippingService->ShippingService = 'Other';
-    $shippingService->ShippingServiceCost = new Types\AmountType(array('value' => 2.00));
-    $shippingService->ShippingServiceAdditionalCost = new Types\AmountType(array('value' => 1.00));
+    $shippingService->ShippingServiceCost = new Types\AmountType(['value' => 2.00]);
+    $shippingService->ShippingServiceAdditionalCost = new Types\AmountType(['value' => 1.00]);
     $item->ShippingDetails->ShippingServiceOptions[] = $shippingService;
 
     /**
@@ -187,8 +187,8 @@ function buildItem()
     $shippingService = new Types\ShippingServiceOptionsType();
     $shippingService->ShippingServicePriority = 2;
     $shippingService->ShippingService = 'USPSParcel';
-    $shippingService->ShippingServiceCost = new Types\AmountType(array('value' => 3.00));
-    $shippingService->ShippingServiceAdditionalCost = new Types\AmountType(array('value' => 2.00));
+    $shippingService->ShippingServiceCost = new Types\AmountType(['value' => 3.00]);
+    $shippingService->ShippingServiceAdditionalCost = new Types\AmountType(['value' => 2.00]);
     $item->ShippingDetails->ShippingServiceOptions[] = $shippingService;
 
     /**
@@ -200,9 +200,9 @@ function buildItem()
     $shippingService = new Types\InternationalShippingServiceOptionsType();
     $shippingService->ShippingServicePriority = 1;
     $shippingService->ShippingService = 'USPSFirstClassMailInternational';
-    $shippingService->ShippingServiceCost = new Types\AmountType(array('value' => 4.00));
-    $shippingService->ShippingServiceAdditionalCost = new Types\AmountType(array('value' => 3.00));
-    $shippingService->ShipToLocation = array('WorldWide');
+    $shippingService->ShippingServiceCost = new Types\AmountType(['value' => 4.00]);
+    $shippingService->ShippingServiceAdditionalCost = new Types\AmountType(['value' => 3.00]);
+    $shippingService->ShipToLocation = ['WorldWide'];
     $item->ShippingDetails->InternationalShippingServiceOption[] = $shippingService;
 
     /**
@@ -219,15 +219,15 @@ function buildItem()
     $shippingService = new Types\InternationalShippingServiceOptionsType();
     $shippingService->ShippingServicePriority = 2;
     $shippingService->ShippingService = 'USPSPriorityMailInternational';
-    $shippingService->ShippingServiceCost = new Types\AmountType(array('value' => 5.00));
-    $shippingService->ShippingServiceAdditionalCost = new Types\AmountType(array('value' => 4.00));
-    $shippingService->ShipToLocation = array(
+    $shippingService->ShippingServiceCost = new Types\AmountType(['value' => 5.00]);
+    $shippingService->ShippingServiceAdditionalCost = new Types\AmountType(['value' => 4.00]);
+    $shippingService->ShipToLocation = [
         'Americas',
         'CA',
         'AU',
         'Europe',
         'JP'
-    );
+    ];
     $item->ShippingDetails->InternationalShippingServiceOption[] = $shippingService;
 
     /**
