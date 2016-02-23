@@ -59,7 +59,7 @@ $sdk = new Sdk([
 ]);
 $exchangeService = $sdk->createBulkDataExchange();
 $transferService = $sdk->createFileTransfer();
-$merchantDataService = new MerchantData\Services\MerchantDataService();
+$merchantData = new MerchantData\MerchantData();
 
 /**
  * Overview
@@ -193,7 +193,7 @@ if ($startDownloadJobResponse->ack !== 'Failure') {
                 if ($filename !== false) {
                     $xml = unZipArchive($filename);
                     if ($xml !== false) {
-                        $activeInventoryReport = $merchantDataService->activeInventoryReport($xml);
+                        $activeInventoryReport = $merchantData->activeInventoryReport($xml);
                         if (isset($activeInventoryReport->Errors)) {
                             foreach ($activeInventoryReport->Errors as $error) {
                                 printf(

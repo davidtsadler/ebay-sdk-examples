@@ -59,7 +59,7 @@ $sdk = new Sdk([
 ]);
 $exchangeService = $sdk->createBulkDataExchange();
 $transferService = $sdk->createFileTransfer();
-$merchantDataService = new MerchantData\Services\MerchantDataService();
+$merchantData = new MerchantData\MerchantData();
 
 /**
  * Before anything can be uploaded a request needs to be made to obtain a job ID and file reference ID.
@@ -236,7 +236,7 @@ if ($createUploadJobResponse->ack !== 'Failure') {
                         if ($filename !== false) {
                             $xml = unZipArchive($filename);
                             if ($xml !== false) {
-                                $responses = $merchantDataService->addFixedPriceItem($xml);
+                                $responses = $merchantData->addFixedPriceItem($xml);
                                 foreach ($responses as $response) {
                                     if (isset($response->Errors)) {
                                         foreach ($response->Errors as $error) {
