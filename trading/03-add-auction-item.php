@@ -118,8 +118,8 @@ $item->BuyItNowPrice = new Types\AmountType(['value' => 15.99, 'currencyID' => '
  * Provide a title and description and other information such as the item's location.
  * Note that any HTML in the title or description must be converted to HTML entities.
  */
-$item->Title = 'Bits &amp; Bobs';
-$item->Description = '&lt;H1&gt;Bits &amp; Bobs&lt;/H1&gt;&lt;p&gt;Just some stuff I found.&lt;/p&gt;';
+$item->Title = 'Bits & Bobs';
+$item->Description = '<h1>Bits & Bobs</h1><p>Just some &lt;stuff&gt; I found.</p>';
 $item->Country = 'US';
 $item->Location = 'Beverly Hills';
 $item->PostalCode = '90210';

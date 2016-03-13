@@ -131,7 +131,7 @@ $item->ItemSpecifics = new Types\NameValueListArrayType();
 
 $specific = new Types\NameValueListType();
 $specific->Name = 'Subject';
-$specific->Value[] = 'Fiction &amp; Literature';
+$specific->Value[] = 'Fiction & Literature';
 $item->ItemSpecifics->NameValueList[] = $specific;
 
 /**
