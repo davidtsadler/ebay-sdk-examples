@@ -25,7 +25,6 @@ require __DIR__.'/../vendor/autoload.php';
  *
  * Ensure that you have edited the configuration.php file
  * to include your application keys.
- *
  */
 $config = require __DIR__.'/../configuration.php';
 
@@ -50,55 +49,16 @@ $service = new Services\FindingService([
  * Create the request object.
  */
 $request = new Types\FindItemsAdvancedRequest();
-
 $request->keywords = 'Harry Potter';
-
-/**
- * Search across two categories.
- * DVDs & Movies > DVDs & Blue-ray (617)
- * Books > Fiction & Literature (171228)
- */
 $request->categoryId = ['617', '171228'];
-
-/**
- * Filter results to only include auction items or auctions with buy it now.
- */
-$itemFilter = new Types\ItemFilter();
-$itemFilter->name = 'ListingType';
-$itemFilter->value[] = 'Auction';
-$itemFilter->value[] = 'AuctionWithBIN';
-$request->itemFilter[] = $itemFilter;
-
-/**
- * Add additional filters to only include items that fall in the price range of $1 to $10.
- *
- * Notice that we can take advantage of the fact that the SDK allows object properties to be assigned via the class constructor.
- */
-$request->itemFilter[] = new Types\ItemFilter([
-    'name' => 'MinPrice',
-    'value' => ['1.00']
-]);
-
-$request->itemFilter[] = new Types\ItemFilter([
-    'name' => 'MaxPrice',
-    'value' => ['10.00']
-]);
-
-/**
- * Sort the results by current price.
- */
 $request->sortOrder = 'CurrentPriceHighest';
-
-/**
- * Limit the results to 10 items per page and start at page 1.
- */
 $request->paginationInput = new Types\PaginationInput();
 $request->paginationInput->entriesPerPage = 10;
 $request->paginationInput->pageNumber = 1;
 
 /**
- * Send the request to the findItemsByAdvanced service operation.
- * This is a synchronus request in order to obtain the total number of pages.
+ * Send the request.
+ * This is a synchronus request to obtain the total number of pages.
  */
 $response = $service->findItemsAdvanced($request);
 

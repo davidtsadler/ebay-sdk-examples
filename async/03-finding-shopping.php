@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2014 David T. Sadler
+ * Copyright 2016 David T. Sadler
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@ require __DIR__.'/../vendor/autoload.php';
  *
  * Ensure that you have edited the configuration.php file
  * to include your application keys.
- *
  */
 $config = require __DIR__.'/../configuration.php';
 
@@ -66,8 +65,8 @@ $findingRequest->paginationInput->entriesPerPage = 10;
 $findingRequest->paginationInput->pageNumber = 1;
 
 /**
- * Send the request to the findItemsByAdvanced service operation.
- * This will a synchronus request in order to obtain the total number of pages.
+ * Send the request.
+ * This is a synchronus request to obtain the total number of pages.
  */
 $response = $findingService->findItemsAdvanced($findingRequest);
 $limit = min($response->paginationOutput->totalPages, 20);
