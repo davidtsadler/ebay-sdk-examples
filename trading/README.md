@@ -76,3 +76,8 @@ These examples show how to use the eBay SDK for PHP with the Trading service.
 1. [Get Store](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/13-get-store.php)
 
    A simple example that returns basic information about a store and any custom categories that belongs to it.
+
+1.[Add eBay store category](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/14-add_ebay_store_category.php), [Delete eBay store category](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/15-delete_ebay_store_category.php), [Move eBay store category](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/16-move_ebay_store_category.php), [Move eBay store category to top](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/17-move_ebay_store_category_to_top.php), [Rename eBay store category](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/18-rename_ebay_store_category.php)
+
+   Taken from the [eBay examples](http://developer.ebay.com/DevZone/XML/docs/Reference/eBay/SetStoreCategories.html#Samples) that show how to manage your eBay store categories.
+
