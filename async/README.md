@@ -10,6 +10,6 @@ These examples show how to use the SDK to make asynchronous requests.
 
    Shows how to make concurrent pagination requests to the findItemsAdvanced operation. 
 
-1. [Finding and shoppinh](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/async/03-finding-shopping.php)
+1. [Finding and shopping](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/async/03-finding-shopping.php)
 
    Advanced example that show how to make concurrent requests to both the Finding and Shopping services. The Finding service is used to obtain various Item IDs that are passed onto the Shopping service. The Shopping service requests are made concurrently while the Finding requests are been handled. 
