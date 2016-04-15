@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2014 David T. Sadler
+ * Copyright 2016 David T. Sadler
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,6 @@ require __DIR__.'/../vendor/autoload.php';
  *
  * Ensure that you have edited the configuration.php file
  * to include your application keys.
- *
- * For more information about getting your application keys, see:
- * http://devbay.net/sdk/guides/application-keys/
  */
 $config = require __DIR__.'/../configuration.php';
 
@@ -37,12 +34,10 @@ $config = require __DIR__.'/../configuration.php';
 use \DTS\eBaySDK\Constants;
 use \DTS\eBaySDK\Trading\Services;
 use \DTS\eBaySDK\Trading\Types;
+use \DTS\eBaySDK\Trading\Enums;
 
 /**
  * Create the service object.
- *
- * For more information about creating a service object, see:
- * http://devbay.net/sdk/guides/getting-started/#service-object
  */
 $service = new Services\TradingService([
     'credentials' => $config['production']['credentials'],
@@ -51,41 +46,34 @@ $service = new Services\TradingService([
 
 /**
  * Create the request object.
- *
- * For more information about creating a request object, see:
- * http://devbay.net/sdk/guides/getting-started/#request-object
  */
 $request = new Types\GeteBayOfficialTimeRequestType();
 
 /**
  * An user token is required when using the Trading service.
- *
- * For more information about getting your user tokens, see:
- * http://devbay.net/sdk/guides/application-keys/
  */
 $request->RequesterCredentials = new Types\CustomSecurityHeaderType();
 $request->RequesterCredentials->eBayAuthToken = $config['production']['authToken'];
 
 /**
- * Send the request to the GeteBayOfficialTime service operation.
- *
- * For more information about calling a service operation, see:
- * http://devbay.net/sdk/guides/getting-started/#service-operation
+ * Send the request.
  */
 $response = $service->geteBayOfficialTime($request);
 
 /**
  * Output the result of calling the service operation.
- *
- * For more information about working with the service response object, see:
- * http://devbay.net/sdk/guides/getting-started/#response-object
  */
-if ($response->Ack !== 'Success') {
-    if (isset($response->Errors)) {
-        foreach ($response->Errors as $error) {
-            printf("Error: %s\n", $error->ShortMessage);
-        }
+if (isset($response->Errors)) {
+    foreach ($response->Errors as $error) {
+        printf(
+            "%s: %s\n%s\n\n",
+            $error->SeverityCode === Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
+            $error->ShortMessage,
+            $error->LongMessage
+        );
     }
-} else {
+}
+
+if ($response->Ack !== 'Failure') {
     printf("The official eBay time is: %s\n", $response->Timestamp->format('H:i (\G\M\T) \o\n l jS F Y'));
 }

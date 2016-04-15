@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2014 David T. Sadler
+ * Copyright 2016 David T. Sadler
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,6 @@ require __DIR__.'/../vendor/autoload.php';
  *
  * Ensure that you have edited the configuration.php file
  * to include your application keys.
- *
- * For more information about getting your application keys, see:
- * http://devbay.net/sdk/guides/application-keys/
  */
 $config = require __DIR__.'/../configuration.php';
 
@@ -41,9 +38,6 @@ use \DTS\eBaySDK\Finding\Enums;
 
 /**
  * Create the service object.
- *
- * For more information about creating a service object, see:
- * http://devbay.net/sdk/guides/getting-started/#service-object
  */
 $service = new Services\FindingService([
     'credentials' => $config['production']['credentials'],
@@ -52,9 +46,6 @@ $service = new Services\FindingService([
 
 /**
  * Create the request object.
- *
- * For more information about creating a request object, see:
- * http://devbay.net/sdk/guides/getting-started/#request-object
  */
 $request = new Types\FindItemsByProductRequest();
 
@@ -106,10 +97,7 @@ $request->paginationInput->entriesPerPage = 10;
 $request->paginationInput->pageNumber = 1;
 
 /**
- * Send the request to the findItemsByProduct service operation.
- *
- * For more information about calling a service operation, see:
- * http://devbay.net/sdk/guides/getting-started/#service-operation
+ * Send the request.
  */
 $response = $service->findItemsByProduct($request);
 
@@ -125,9 +113,6 @@ if (isset($response->errorMessage)) {
 
 /**
  * Output the result of the search.
- *
- * For more information about working with the service response object, see:
- * http://devbay.net/sdk/guides/getting-started/#response-object
  */
 printf(
     "%s items found over %s pages.\n\n",

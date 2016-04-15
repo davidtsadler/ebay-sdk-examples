@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2014 David T. Sadler
+ * Copyright 2016 David T. Sadler
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,6 @@ require __DIR__.'/utils.php';
  *
  * Ensure that you have edited the configuration.php file
  * to include your application keys.
- *
- * For more information about getting your application keys, see:
- * http://devbay.net/sdk/guides/application-keys/
  */
 $config = require __DIR__.'/../configuration.php';
 
@@ -48,9 +45,6 @@ use \DTS\eBaySDK\MerchantData;
  * Create the service objects.
  *
  * This example uses both the File Transfer and Bulk Data Exchange services.
- *
- * For more information about creating a service object, see:
- * http://devbay.net/sdk/guides/getting-started/#service-object
  */
 $sdk = new Sdk([
     'credentials' => $config['sandbox']['credentials'],

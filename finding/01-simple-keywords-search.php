@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2014 David T. Sadler
+ * Copyright 2016 David T. Sadler
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,6 @@ require __DIR__.'/../vendor/autoload.php';
  *
  * Ensure that you have edited the configuration.php file
  * to include your application keys.
- *
- * For more information about getting your application keys, see:
- * http://devbay.net/sdk/guides/application-keys/
  */
 $config = require __DIR__.'/../configuration.php';
 
@@ -37,12 +34,10 @@ $config = require __DIR__.'/../configuration.php';
 use \DTS\eBaySDK\Constants;
 use \DTS\eBaySDK\Finding\Services;
 use \DTS\eBaySDK\Finding\Types;
+use \DTS\eBaySDK\Finding\Enums;
 
 /**
  * Create the service object.
- *
- * For more information about creating a service object, see:
- * http://devbay.net/sdk/guides/getting-started/#service-object
  */
 $service = new Services\FindingService([
     'credentials' => $config['production']['credentials'],
@@ -51,9 +46,6 @@ $service = new Services\FindingService([
 
 /**
  * Create the request object.
- *
- * For more information about creating a request object, see:
- * http://devbay.net/sdk/guides/getting-started/#request-object
  */
 $request = new Types\FindItemsByKeywordsRequest();
 
@@ -63,26 +55,24 @@ $request = new Types\FindItemsByKeywordsRequest();
 $request->keywords = 'Harry Potter';
 
 /**
- * Send the request to the findItemsByKeywords service operation.
- *
- * For more information about calling a service operation, see:
- * http://devbay.net/sdk/guides/getting-started/#service-operation
+ * Send the request.
  */
 $response = $service->findItemsByKeywords($request);
 
 /**
  * Output the result of the search.
- *
- * For more information about working with the service response object, see:
- * http://devbay.net/sdk/guides/getting-started/#response-object
  */
-if ($response->ack !== 'Success') {
-    if (isset($response->errorMessage)) {
-        foreach ($response->errorMessage->error as $error) {
-            printf("Error: %s\n", $error->message);
-        }
+if (isset($response->errorMessage)) {
+    foreach ($response->errorMessage->error as $error) {
+        printf(
+            "%s: %s\n\n",
+            $error->severity=== Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
+            $error->message
+        );
     }
-} else {
+}
+
+if ($response->ack !== 'Failure') {
     foreach ($response->searchResult->item as $item) {
         printf(
             "(%s) %s: %s %.2f\n",

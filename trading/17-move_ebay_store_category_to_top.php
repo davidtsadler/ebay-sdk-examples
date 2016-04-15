@@ -25,7 +25,6 @@ require __DIR__.'/../vendor/autoload.php';
  *
  * Ensure that you have edited the configuration.php file
  * to include your application keys.
- *
  */
 $config = require __DIR__.'/../configuration.php';
 
