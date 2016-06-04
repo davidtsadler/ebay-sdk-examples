@@ -1,5 +1,5 @@
 {
     "require": {
-        "dts/ebay-sdk-php": "dev-async"
+        "dts/ebay-sdk-php": "dev-master"
     }
 }
