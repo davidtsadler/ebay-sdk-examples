@@ -112,15 +112,19 @@ if ($createUploadJobResponse->ack !== 'Failure') {
     $setShipmentTrackingInfo->IsPaid = true;
     $setShipmentTrackingInfo->IsShipped = true;
     $setShipmentTrackingInfo->Shipment = new MerchantData\Types\ShipmentType();
-    $setShipmentTrackingInfo->Shipment->ShipmentLineItem = new MerchantData\Types\ShipmentLineItemType();
-    $setShipmentTrackingInfo->Shipment->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType([
+    $trackingDetails = new MerchantData\Types\ShipmentTrackingDetailsType();
+    $trackingDetails->ShipmentTrackingNumber = '1234567890';
+    $trackingDetails->ShippingCarrierUsed = 'ABF';
+    $trackingDetails->ShipmentLineItem = new MerchantData\Types\ShipmentLineItemType();
+    $trackingDetails->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType([
         'ItemID' => '123456789x',
         'Quantity' => 1
     ]);
-    $setShipmentTrackingInfo->Shipment->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType([
+    $trackingDetails->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType([
         'ItemID' => '987654321x',
         'Quantity' => 2
     ]);
+    $setShipmentTrackingInfo->Shipment->ShipmentTrackingDetails[] = $trackingDetails;
     $payload->SetShipmentTrackingInfoRequest[] = $setShipmentTrackingInfo;
 
     $setShipmentTrackingInfo = new MerchantData\Types\SetShipmentTrackingInfoRequestType();
@@ -128,15 +132,19 @@ if ($createUploadJobResponse->ack !== 'Failure') {
     $setShipmentTrackingInfo->IsPaid = true;
     $setShipmentTrackingInfo->IsShipped = true;
     $setShipmentTrackingInfo->Shipment = new MerchantData\Types\ShipmentType();
-    $setShipmentTrackingInfo->Shipment->ShipmentLineItem = new MerchantData\Types\ShipmentLineItemType();
-    $setShipmentTrackingInfo->Shipment->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType([
+    $trackingDetails = new MerchantData\Types\ShipmentTrackingDetailsType();
+    $trackingDetails->ShipmentTrackingNumber = '0987654321';
+    $trackingDetails->ShippingCarrierUsed = 'AMWST';
+    $trackingDetails->ShipmentLineItem = new MerchantData\Types\ShipmentLineItemType();
+    $trackingDetails->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType([
         'ItemID' => '222222222x',
         'Quantity' => 1
     ]);
-    $setShipmentTrackingInfo->Shipment->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType([
+    $trackingDetails->ShipmentLineItem->LineItem[] = new MerchantData\Types\LineItemType([
         'ItemID' => '333333333x',
         'Quantity' => 2
     ]);
+    $setShipmentTrackingInfo->Shipment->ShipmentTrackingDetails[] = $trackingDetails;
     $payload->SetShipmentTrackingInfoRequest[] = $setShipmentTrackingInfo;
 
     /**
