@@ -81,3 +81,6 @@ These examples show how to use the eBay SDK for PHP with the Trading service.
 
    Taken from the [eBay examples](http://developer.ebay.com/DevZone/XML/docs/Reference/eBay/SetStoreCategories.html#Samples) that show how to manage your eBay store categories.
 
+1. [Revise item](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/19-revise-item.php)
+
+   Shows how to revise an item.
