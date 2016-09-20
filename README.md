@@ -1,6 +1,6 @@
 # EBAY-SDK-EXAMPLES
 
-This project contains serveral examples of using the [eBay SDK for PHP](https://github.com/davidtsadler/ebay-sdk).
+This project contains several examples of using the [eBay SDK for PHP](https://github.com/davidtsadler/ebay-sdk).
 
 ## Requirements
 
