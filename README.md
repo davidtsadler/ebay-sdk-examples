@@ -1,6 +1,6 @@
 # EBAY-SDK-EXAMPLES
 
-This project contains several examples of using the [eBay SDK for PHP](https://github.com/davidtsadler/ebay-sdk).
+This project contains several examples of using the [eBay SDK for PHP](https://github.com/davidtsadler/ebay-sdk-php).
 
 ## Requirements
 
@@ -10,6 +10,8 @@ This project contains several examples of using the [eBay SDK for PHP](https://g
   - SSL enabled on the cURL extension so that https requests can be made.
 
 ## Installation
+https://github.com/davidtsadler/ebay-sdk-php).
+
 
 1. Download the project.
 
