@@ -84,3 +84,15 @@ These examples show how to use the eBay SDK for PHP with the Trading service.
 1. [Revise item](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/19-revise-item.php)
 
    Shows how to revise an item.
+
+1. [End item](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/20-end-item.php)
+
+   Shows how to end an item.
+
+1. [End items](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/21-end-items.php)
+
+   Shows how to end several items in one operation.
+
+1. [End items](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/22-get-feedback.php)
+
+   Shows how to obtain feedback records.
