@@ -41,8 +41,7 @@ use \DTS\eBaySDK\Trading\Enums;
  */
 $service = new Services\TradingService([
     'credentials' => $config['production']['credentials'],
-//    'sandbox'     => true,
-    'siteId'      => Constants\SiteIds::IT
+    'siteId'      => Constants\SiteIds::US
 ]);
 
 /**
@@ -57,14 +56,17 @@ $request = new Types\GetFeedbackRequestType();
  */
 $request->RequesterCredentials = new Types\CustomSecurityHeaderType();
 $request->RequesterCredentials->eBayAuthToken = $config['production']['authToken'];
+
 /**
- * By specifying 'Positive' we are telling the API return only positive reviews
+ * By specifying 'Positive' we are telling the API return only positive reviews.
  */
 $request->CommentType = ['Positive'];
+
 /**
- * By specifying 'ReturnAll' we are telling the API return the full reviews
+ * By specifying 'ReturnAll' we are telling the API return the full reviews.
  */
 $request->DetailLevel = ['ReturnAll'];
+
 /**
  * Send the request.
  */
@@ -85,14 +87,13 @@ if (isset($response->Errors)) {
 }
 
 if ($response->Ack !== 'Failure') {
-	foreach ($response->FeedbackDetailArray->FeedbackDetail as $feedback) {
-		printf(
-			"<p><strong>User</strong>: %s<br><strong>bought</strong>:%s<br><strong>on</strong>: %s<br><strong>comment</strong>: %s</p>",
-			$feedback->CommentingUser,
-			$feedback->ItemTitle,
-			$feedback->CommentTime->format('d-m-Y H:i'),
-			$feedback->CommentText
-    		);
-		}
+    foreach ($response->FeedbackDetailArray->FeedbackDetail as $feedback) {
+        printf(
+            "User %s bought %s on %s. Comment: %s\n",
+            $feedback->CommentingUser,
+            $feedback->ItemTitle,
+            $feedback->CommentTime->format('d-m-Y H:i'),
+            $feedback->CommentText
+        );
+    }
 }
-?>
