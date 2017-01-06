@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 David T. Sadler
+ * Copyright 2017 David T. Sadler
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,27 +32,30 @@ $config = require __DIR__.'/../configuration.php';
  * The namespaces provided by the SDK.
  */
 use \DTS\eBaySDK\Constants;
-use \DTS\eBaySDK\BulkDataExchange\Services;
-use \DTS\eBaySDK\BulkDataExchange\Types;
+use \DTS\eBaySDK\ProductMetadata\Services;
+use \DTS\eBaySDK\ProductMetadata\Types;
+use \DTS\eBaySDK\ProductMetadata\Enums;
 
 /**
  * Create the service object.
  */
-$service = new Services\BulkDataExchangeService([
-    'credentials' => $config['sandbox']['credentials'],
-    'authToken'   => $config['sandbox']['authToken'],
-    'sandbox'     => true
+$service = new Services\ProductMetadataService([
+    'credentials' => $config['production']['credentials'],
+    'globalId'    => Constants\GlobalIds::MOTORS
 ]);
 
 /**
  * Create the request object.
  */
-$request = new Types\GetJobsRequest();
+$request = new Types\GetCompatibilitySearchValuesRequest();
+$request->categoryId = '33567';
+$request->propertyName = 'Make';
+$request->listFormatOnly = true;
 
 /**
  * Send the request.
  */
-$response = $service->getJobs($request);
+$response = $service->getCompatibilitySearchValues($request);
 
 /**
  * Output the result of calling the service operation.
@@ -61,29 +64,16 @@ if (isset($response->errorMessage)) {
     foreach ($response->errorMessage->error as $error) {
         printf(
             "%s: %s\n\n",
-            $error->severity === BulkDataExchange\Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
+            $error->severity=== Enums\ErrorSeverity::C_ERROR ? 'Error' : 'Warning',
             $error->message
         );
     }
 }
 
 if ($response->ack !== 'Failure') {
-    /**
-     * Just display the first 3 jobs from the response.
-     */
-    $upTo = min(count($response->jobProfile), 3);
-    for ($x = 0; $x < $upTo; $x++) {
-        $job = $response->jobProfile[$x];
-        printf(
-            "ID: %s\nType: %s\nStatus: %s\nInput File Reference ID: %s\nFile Reference ID: %s\nPercent Complete: %s\nCreated: %s\nCompleted: %s\n\n",
-            $job->jobId,
-            $job->jobType,
-            $job->jobStatus,
-            $job->inputFileReferenceId,
-            $job->fileReferenceId,
-            $job->percentComplete,
-            $job->creationTime->format('H:i (\G\M\T) \o\n l jS F Y'),
-            isset($job->completionTime) ? $job->completionTime->format('H:i (\G\M\T) \o\n l jS F Y') : ''
-        );
+    foreach ($response->propertyValues as $property) {
+        foreach ($property->value as $value) {
+            printf("%s\n", $value->text->value);
+        }
     }
 }

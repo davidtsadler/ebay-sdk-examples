@@ -65,7 +65,19 @@ There are several examples for each service that the SDK supports and they are l
 
 1. [Async](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/async/README.md)
 
-To run an example from the command line use the `php` command followed by the name of the example file. 
+1. [Account](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/account/README.md)
+
+1. [Inventory](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/inventory/README.md)
+
+1. [Product](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/product/README.md)
+
+1. [Product Metadata](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/product_metadata/README.md)
+
+1. [Browse](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/browse/README.md)
+
+1. [Analytics](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/analytics/README.md)
+
+To run an example from the command line use the `php` command followed by the name of the example file.
 
 ```
 php finding/01-simple-keywords-search.php

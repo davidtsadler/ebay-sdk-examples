@@ -6,9 +6,6 @@
  *
  * Be careful not to commit this file into an SCM repository.
  * You risk exposing your eBay application keys to more people than intended.
- *
- * For more information about the configuration, see:
- * http://devbay.net/sdk/guides/sample-project/
  */
 return [
     'sandbox' => [
@@ -17,7 +14,8 @@ return [
             'appId' => 'YOUR_SANDBOX_APPID_APPLICATION_KEY',
             'certId' => 'YOUR_SANDBOX_CERTID_APPLICATION_KEY',
         ],
-        'authToken' => 'YOUR_SANDBOX_USER_TOKEN_APPLICATION_KEY'
+        'authToken' => 'YOUR_SANDBOX_USER_TOKEN_APPLICATION_KEY',
+        'oauthUserToken' => 'YOUR_SANDBOX_OAUTH_USER_TOKEN'
     ],
     'production' => [
         'credentials' => [
@@ -25,6 +23,7 @@ return [
             'appId' => 'YOUR_PRODUCTION_APPID_APPLICATION_KEY',
             'certId' => 'YOUR_PRODUCTION_CERTID_APPLICATION_KEY',
         ],
-        'authToken' => 'YOUR_PRODUCTION_USER_TOKEN_APPLICATION_KEY'
+        'authToken' => 'YOUR_PRODUCTION_USER_TOKEN_APPLICATION_KEY',
+        'oauthUserToken' => 'YOUR_PRODUCTION_OAUTH_USER_TOKEN'
     ]
 ];
