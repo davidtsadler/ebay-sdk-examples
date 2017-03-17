@@ -9,3 +9,7 @@ These examples show how to use the eBay SDK for PHP with the Shopping service.
 1. [Get single item](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/shopping/02-get-single-item.php)
 
    This example retrieves an item using the GetSingleItem operation and displays any item specifics, variations or compatibility information.
+
+1. [Get category info](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/shopping/03-get-category-info.php)
+
+   A basic example that shows how to call GetCategoryInfo 
