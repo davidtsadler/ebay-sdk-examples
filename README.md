@@ -77,6 +77,8 @@ There are several examples for each service that the SDK supports and they are l
 
 1. [Analytics](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/analytics/README.md)
 
+1. [OAuth Tokens](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/oauth-tokens/README.md)
+
 To run an example from the command line use the `php` command followed by the name of the example file.
 
 ```

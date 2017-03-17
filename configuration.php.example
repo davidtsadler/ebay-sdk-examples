@@ -15,7 +15,8 @@ return [
             'certId' => 'YOUR_SANDBOX_CERTID_APPLICATION_KEY',
         ],
         'authToken' => 'YOUR_SANDBOX_USER_TOKEN_APPLICATION_KEY',
-        'oauthUserToken' => 'YOUR_SANDBOX_OAUTH_USER_TOKEN'
+        'oauthUserToken' => 'YOUR_SANDBOX_OAUTH_USER_TOKEN',
+        'ruName' => 'YOUR_SANDBOX_RUNAME'
     ],
     'production' => [
         'credentials' => [
@@ -24,6 +25,7 @@ return [
             'certId' => 'YOUR_PRODUCTION_CERTID_APPLICATION_KEY',
         ],
         'authToken' => 'YOUR_PRODUCTION_USER_TOKEN_APPLICATION_KEY',
-        'oauthUserToken' => 'YOUR_PRODUCTION_OAUTH_USER_TOKEN'
+        'oauthUserToken' => 'YOUR_PRODUCTION_OAUTH_USER_TOKEN',
+        'ruName' => 'YOUR_PRODUCTION_RUNAME'
     ]
 ];
