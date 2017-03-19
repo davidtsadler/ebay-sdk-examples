@@ -167,5 +167,8 @@ $server->listen(function ($environment) use ($config) {
         ]);
     });
 
+    $app->get('/privacy', function (Request $request, Response $response) {
+        return $this->view->render($response, 'privacy.html');
+    });
     return $app->run(true);
 });
