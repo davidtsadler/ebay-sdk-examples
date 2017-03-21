@@ -19,25 +19,7 @@
  * Include the SDK by using the autoloader from Composer.
  */
 require __DIR__.'/../vendor/autoload.php';
-
-/**
- * Include a very basic web server.
- */
-require __DIR__.'/Server.php';
 require __DIR__.'/slim-app.php';
-require __DIR__.'/gen-pem.php';
 
-$options = getopt('h:p:');
-
-$host = isset($options['h']) ? $options['h'] : '127.0.0.1';
-$port = isset($options['p']) ? $options['p'] : 8080;
-
-genSelfSignedCertificate();
-
-$server = new Server($host, $port);
-
-$server->listen(function ($environment) {
-    $app = buildSlimApp();
-    $app->getContainer()['environment'] = $environment;
-    return $app->run(true);
-});
+$app = buildSlimApp();
+$app->run();
