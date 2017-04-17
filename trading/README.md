@@ -93,6 +93,10 @@ These examples show how to use the eBay SDK for PHP with the Trading service.
 
    Shows how to end several items in one operation.
 
-1. [End items](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/22-get-feedback.php)
+1. [Get feedback](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/22-get-feedback.php)
 
    Shows how to obtain feedback records.
+
+1. [Add Items](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/trading/23-add-items.php)
+
+   Shows how to use add items.
