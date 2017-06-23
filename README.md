@@ -79,6 +79,12 @@ There are several examples for each service that the SDK supports and they are l
 
 1. [OAuth Tokens](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/oauth-tokens/README.md)
 
+1. [Taxonomy](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/taxonomy/README.md)
+
+1. [Feed](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/feed/README.md)
+
+1. [Metadata](https://github.com/davidtsadler/ebay-sdk-examples/blob/master/metadata/README.md)
+
 To run an example from the command line use the `php` command followed by the name of the example file.
 
 ```
