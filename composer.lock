@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b11170e281109db47617d94bc143b20e",
+    "content-hash": "161cf13c38aef48742a26308c7c68c05",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -39,16 +39,16 @@
         },
         {
             "name": "dts/ebay-sdk-php",
-            "version": "17.0.0",
+            "version": "18.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/davidtsadler/ebay-sdk-php.git",
-                "reference": "fefee1b828c45c970061db88fdf65ee968a03a26"
+                "reference": "42714ad203f0d37be53aa11fbe78b3eb6b18d34b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davidtsadler/ebay-sdk-php/zipball/fefee1b828c45c970061db88fdf65ee968a03a26",
-                "reference": "fefee1b828c45c970061db88fdf65ee968a03a26",
+                "url": "https://api.github.com/repos/davidtsadler/ebay-sdk-php/zipball/42714ad203f0d37be53aa11fbe78b3eb6b18d34b",
+                "reference": "42714ad203f0d37be53aa11fbe78b3eb6b18d34b",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "ebay",
                 "sdk"
             ],
-            "time": "2018-06-12T22:38:41+00:00"
+            "time": "2018-06-28T21:22:49+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

@@ -1,6 +1,6 @@
 {
     "require": {
-        "dts/ebay-sdk-php": "17.*",
+        "dts/ebay-sdk-php": "18.*",
         "slim/slim": "^3.0",
         "slim/twig-view": "^2.2"
     }
