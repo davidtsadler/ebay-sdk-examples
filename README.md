@@ -1,5 +1,7 @@
 # EBAY-SDK-EXAMPLES
 
+**This repository is no longer actively maintained and has been archived.**
+
 This project contains several examples of using the [eBay SDK for PHP](https://github.com/davidtsadler/ebay-sdk-php).
 
 ## Requirements
